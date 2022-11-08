@@ -1,0 +1,16 @@
+계정은 baemin
+비번 1234 생성
+DB는 마리아
+
+CREATE TABLE `tbl_member` (
+	`userid` VARCHAR(20) NOT NULL COLLATE 'armscii8_bin',
+	`userpassword` VARCHAR(300) NULL DEFAULT NULL COLLATE 'armscii8_bin',
+	`username` VARCHAR(300) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`telno` VARCHAR(300) NULL DEFAULT NULL COLLATE 'armscii8_bin',
+	`email` VARCHAR(300) NULL DEFAULT NULL COLLATE 'armscii8_bin',
+	`address` VARCHAR(300) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`reg_date` TIMESTAMP NULL DEFAULT current_timestamp(),
+	`mod_date` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	`authority_code` CHAR(2) NULL DEFAULT '0' COLLATE 'armscii8_bin',
+	PRIMARY KEY (`userid`) USING BTREE
+)
