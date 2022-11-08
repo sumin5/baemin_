@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baemin.member.mapper.memberMapper">
+
+	<!-- SIGN UP -->
+	<insert id="signup" parameterType="baemin.member.domain.MemberDTO">
+		insert into tbl_member(userid, username, userpassword, telno, email,address,authority_code)
+		value(#{userid}, #{username}, #{userpassword}, #{telno}, #{email},#{address},#{authority_code})
+	</insert>
+	<!-- test
+	insert into tbl_member (userid, userpassword, username, telno, email)
+		VALUE('test','test','test','test','test'); -->
+		
+		
+	<!-- LOGIN CHECK -->
+	<select id="logincheck" parameterType="baemin.member.domain.MemberDTO" resultType="int">
+		select count(*)
+		from tbl_member
+		where userid=#{userid} 
+	</select>
+	<!-- test
+		select count(*)
+		from tbl_member
+		where userid='test' and userpassword='test'; -->
+		
+		
+	<!-- ID SAME CHECK -->
+	<select id="idsame" parameterType="baemin.member.domain.MemberDTO" resultType="int">
+		select count(*)
+		from tbl_member
+		where userid=#{userid}
+	</select>
+	
+	<!-- LOGIN MEMBER INFORMATION /PASSWORD ENCODING DECODING  -->
+	<select id="memberInfo" parameterType="baemin.member.domain.MemberDTO" resultType="baemin.member.domain.MemberDTO">
+		select userid, userpassword, username, telno, email
+		from tbl_member
+		where userid=#{userid}
+	</select>
+	
+</mapper>
