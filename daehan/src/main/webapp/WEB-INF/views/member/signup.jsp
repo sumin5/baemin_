@@ -162,7 +162,7 @@ ${FlashMessage} --%>
 				<option value="none">선택하세요</option>
 				<option value="1">관리자</option>
 				<option value="2">판매자</option>
-				<option value="3">구매자</option>
+				<option value="3">구매자1</option>
 			</select>		
 	</form>
 </div>
