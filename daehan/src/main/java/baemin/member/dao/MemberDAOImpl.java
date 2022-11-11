@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import baemin.member.domain.DetailModifyDTO;
 import baemin.member.domain.MemberDTO;
 
 @Repository
@@ -36,5 +37,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberDTO postLoginpwd (MemberDTO dto) throws Exception{
 		return sql.selectOne(NAMESPACE+".memberInfo", dto);
+	}
+
+	@Override
+	public void postDetailModify(DetailModifyDTO dto) throws Exception {
+		sql.insert(NAMESPACE+".postDetailModify",dto);
+		
 	}
 }

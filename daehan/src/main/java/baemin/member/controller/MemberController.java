@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import baemin.member.domain.DetailModifyDTO;
 import baemin.member.domain.MemberDTO;
 import baemin.member.service.MemberService;
 
@@ -41,14 +42,21 @@ public class MemberController {
 	@RequestMapping(value="/signup", method = RequestMethod.GET)
 	public void getSignup() throws Exception{
 		System.out.println("getsign");
+		// void 일때는 매핑한 value값으로 논리뷰를 리턴한다 
+
 	}
+	
 	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String postSignup(@ModelAttribute MemberDTO dto) throws Exception { // default는 @ModelAttribute	
+	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("username") String name
+			) throws Exception { // default는 @ModelAttribute	
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
+		
 
+		System.out.println("파람으로 가져온 name값은? " + name);
+		System.out.println("DTO를 통해서 가져온 name값은 ? " + dto.getUsername());
 		//System.out.println("dto"+dto.get);
 		//비밀번호 암호화
 		String userpassword = dto.getUserpassword();
@@ -140,5 +148,26 @@ public class MemberController {
 		
 		return result;
 	}
+	
+	//--------멤버 계정 디테일 페이지 ------
+	@RequestMapping(value="/detailPage",method=RequestMethod.POST)
+	public String detailPage(@RequestParam("userid")String userid,Model model) throws Exception {
+		System.out.println("userid는?" + userid);
+		model.addAttribute("userid",userid);
+		return "/member/detailPage";
+	}
+	
+	//-------멤버 디테일 수정 행위
+	@RequestMapping(value="/detailModify",method=RequestMethod.POST)
+	public String detailPage(DetailModifyDTO dto,Model model) throws Exception {
+		memberservice.postDetailModify(dto);
+		model.addAttribute("useird"+dto.getUserid());
+		
+		
+		return "/member/detailPage";
+	}
+	
+	
+	
 
 }

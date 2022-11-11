@@ -87,6 +87,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
+
+	
 	/* 로그인 빈칸 여부 체크 */
 	function login() {
 		if($("#userid").val() ==''){alert("아이디를 입력하세요."); $("#userid").focus(); return false; }
@@ -110,9 +112,10 @@
 	                $("#userid").val("").focus();
 	             }else if(id != ""){
 	                //location.href = '/board/list';
-	                document.getElementById('login_first').style.visibility="hidden"; //hide 
-	                
+	                document.getElementById('login_first').style.visibility="hidden"; //hide
+	                console.log("id값은? " + id);
 	                $("#welcome").html(id);
+	                $("#userid1").val(id);
 	                $("#login_welcome").show();
 	             }else if(id =="ID_NOT_FOUND"){
 	                $("#notFound").show();
@@ -166,6 +169,12 @@ ${FlashMessage} --%>
 
 	<div id="login_welcome" class="login_welcome" style="display:none">
 		<div id="welcome" value=""></div>님! 환영합니다!
+		<form action="/member/detailPage" method="post">
+			<input type="hidden" id="userid1" name="userid" value="">
+			<input type="submit" value="회원상세등록">
+		</form>
+		
+		</div>
 	</div>
 	
 	<div id="buttons">
