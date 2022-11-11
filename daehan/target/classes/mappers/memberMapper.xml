@@ -40,4 +40,17 @@
 		where userid=#{userid}
 	</select>
 	
+	<!-- 
+	
+	 -->
+	 <insert id="postDetailModify" parameterType="baemin.member.domain.DetailModifyDTO">
+	 	insert into tbl_member_detail(
+	 		userid,bank_name,bank_number,delivery_zipcode,delivery_road,delivery_detail,
+	 		address_code_group_id,address_code_id,member_state_id,agree)
+	 	value(#{userid},#{bank_name},#{bank_number},#{delivery_zipcode},
+	 		#{delivery_road},#{delivery_detail},#{address_code_group_id},
+	 		#{address_code_id},#{member_state_id},#{agree})	
+	 		
+	 </insert>
+	
 </mapper>

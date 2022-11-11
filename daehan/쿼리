@@ -14,3 +14,22 @@ CREATE TABLE `tbl_member` (
 	`authority_code` CHAR(2) NULL DEFAULT '0' COLLATE 'armscii8_bin',
 	PRIMARY KEY (`userid`) USING BTREE
 )
+
+CREATE TABLE `tbl_member_detail` (
+	`userid` VARCHAR(20) NOT NULL,
+	`bank_name` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`bank_number` VARCHAR(30) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`agree` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`couponid` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`delivery_zipcode` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`delivery_road` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`delivery_detail` VARCHAR(40) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`address_code_group_id` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`address_code_id` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`member_state_id` VARCHAR(8) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`reg_date` TIMESTAMP NULL DEFAULT current_timestamp(),
+	`mod_date` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	PRIMARY KEY (`userid`) USING BTREE,
+	FOREIGN KEY(`userid`) REFERENCES tbl_member(`userid`)
+	ON DELETE CASCADE
+);

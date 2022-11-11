@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import baemin.member.dao.MemberDAO;
+import baemin.member.domain.DetailModifyDTO;
 import baemin.member.domain.MemberDTO;
 
 @Service
@@ -11,6 +12,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDAO dao;
+	
 	
 	//---------------Signup page POST---------------
 	@Override
@@ -35,4 +37,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO postLoginpwd (MemberDTO dto) throws Exception{
 		return dao.postLoginpwd(dto);
 	}
+	//------------------------회원 상세 디테일 수정 및 입력---------------
+	@Override
+	public void postDetailModify(DetailModifyDTO dto) throws Exception {
+		dao.postDetailModify(dto);
+		
+	}
+	
+	
 }
