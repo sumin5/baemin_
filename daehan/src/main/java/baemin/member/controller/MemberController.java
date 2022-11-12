@@ -47,6 +47,7 @@ public class MemberController {
 	}
 	
 	
+	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
 	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("username") String name
