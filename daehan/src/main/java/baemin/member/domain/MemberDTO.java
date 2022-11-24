@@ -12,31 +12,31 @@ public class MemberDTO {
 			`authority_code` CHAR(1) NULL DEFAULT '0' COLLATE 'utf8mb3_general_ci',
 			PRIMARY KEY (`userid`) USING BTREE
 		)*/
-	private String userid;
-	private String userpassword;
-	private String username;
+	private String user_id;
+	private String user_password;
+	private String user_name;
 	private String telno;
 	private String email;
 	private String address;
 	private String authority_code;
 	//------------------Getter/Setter------------------
-	public String getUserid() {
-		return userid;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getUserpassword() {
-		return userpassword;
+	public String getUser_password() {
+		return user_password;
 	}
-	public void setUserpassword(String userpassword) {
-		this.userpassword = userpassword;
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
-	public String getUsername() {
-		return username;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	public String getTelno() {
 		return telno;
@@ -70,12 +70,12 @@ public class MemberDTO {
 		super();
 	} // 기본생성자
 	
-	public MemberDTO(String userid, String userpassword, String username, String telno, String email, String address,
+	public MemberDTO(String user_id, String user_password, String user_name, String telno, String email, String address,
 			String authority_code) {
 		super();
-		this.userid = userid;
-		this.userpassword = userpassword;
-		this.username = username;
+		this.user_id = user_id;
+		this.user_password = user_password;
+		this.user_name = user_name;
 		this.telno = telno;
 		this.email = email;
 		this.address = address;

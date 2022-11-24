@@ -82,18 +82,18 @@
 function signup_test(){
 	console.log("signup_test 진입");
 	
-	if($("#userid").val() == ''){alert("아이디를 입력하세요."); $("#userid").focus(); return false;}
-	if($("#userpassword").val() == ''){alert("비밀번호를 입력하세요."); $("#userpassword").focus(); return false;}
+	if($("#user_id").val() == ''){alert("아이디를 입력하세요."); $("#user_id").focus(); return false;}
+	if($("#user_password").val() == ''){alert("비밀번호를 입력하세요."); $("#user_password").focus(); return false;}
 	
 	/* 비밀번호 길이 설정 */
-	var pwdlength = document.getElementById('userpassword').value;
+	var pwdlength = document.getElementById('user_password').value;
 	if(pwdlength.length < 4 || pwdlength.length > 20) {alert("4~20자리의 비밀번호를 입력하세요."); return false;}
 	
-	if($("#username").val() == ''){alert("이름을 입력하세요."); $("#username").focus(); return false;}
+	if($("#user_name").val() == ''){alert("이름을 입력하세요."); $("#user_name").focus(); return false;}
 	if($("#telno").val() == ''){alert("전화번호를 입력하세요."); $("#telno").focus(); return false;}
 	if($("#email").val() == ''){alert("이메일을 입력하세요."); $("#email").focus(); return false;}
-	if(id_same == ""){alert("아이디 중복 체크 하세요."); $("#userid").focus(); return false;}
-	if(id_same == "1"){alert("다른 아이디를 입력하세요."); $("#userid").focus(); return false;}
+	if(id_same == ""){alert("아이디 중복 체크 하세요."); $("#user_id").focus(); return false;}
+	if(id_same == "1"){alert("다른 아이디를 입력하세요."); $("#user_id").focus(); return false;}
 
 	/* 0701 */
 	$("#signup-form").attr("action","/member/signup").submit();
@@ -102,12 +102,12 @@ function signup_test(){
 /* 중복 아이디 체크 */
 var id_same="";
 function idsame() {
-	if($("#userid").val() == '') {alert("아이디를 입력하세요."); $("#userid").focus(); return false;}
+	if($("#user_id").val() == '') {alert("아이디를 입력하세요."); $("#user_id").focus(); return false;}
 	$.ajax({
 		url : "/member/idsame",
 		type : "post",
 		dataType : "text",
-		data : {"userid" : $("#userid").val()},
+		data : {"user_id" : $("#user_id").val()},
 		success : function(result){
 			if(result == "1"){
 				alert("이미 존재하는 아이디입니다");
@@ -145,12 +145,12 @@ ${FlashMessage} --%>
 <div id="signup-formm">
 	<form id="signup-form" method="post">
 		<label>ID</label>
-			<input id="userid" class="userid" name="userid" placeholder="아이디를 입력하세요"/> 	
+			<input id="user_id" class="user_id" name="user_id" placeholder="아이디를 입력하세요"/> 	
 			<input type="button" class="idsame"  value="아이디 중복 체크" onclick="idsame()">
 		<label>PASSWORD</label>
-			<input type="password" id="userpassword" class="userpassword" name="userpassword" placeholder="비밀번호를 입력하세요"/> <br> 
+			<input type="password" id="user_password" class="user_password" name="user_password" placeholder="비밀번호를 입력하세요"/> <br> 
 		<label>NAME</label>
-			<input type="text" id="username" class="username" name="username" placeholder="이름을 입력하세요"/> <br>
+			<input type="text" id="user_name" class="user_name" name="user_name" placeholder="이름을 입력하세요"/> <br>
 		<label>PHONE NUMBER</label>
 			<input id="telno" class="telno" name="telno" placeholder="휴대전화 번호를 입력하세요"/> <br>
 		<label>E-MAIL</label>

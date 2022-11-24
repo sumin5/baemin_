@@ -1,7 +1,7 @@
 package baemin.member.domain;
 
-public class DetailModifyDTO {
-	private String userid;
+public class DetailInsertDTO {
+	private String user_id;
 	private String bank_name;
 	private String bank_number;
 	private String delivery_zipcode;
@@ -10,22 +10,21 @@ public class DetailModifyDTO {
 	private String address_code_group_id;
 	private String address_code_id;
 	private String member_state_id;
-	private String agree;
 	
 	
 	
 	
-	public DetailModifyDTO() {
+	public DetailInsertDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public DetailModifyDTO(String userid, String bank_name, String bank_number, String delivery_zipcode,
+	public DetailInsertDTO(String user_id, String bank_name, String bank_number, String delivery_zipcode,
 			String delivery_road, String delivery_detail, String address_code_group_id, String address_code_id,
-			String member_state_id, String agree) {
+			String member_state_id) {
 		super();
-		this.userid = userid;
+		this.user_id = user_id;
 		this.bank_name = bank_name;
 		this.bank_number = bank_number;
 		this.delivery_zipcode = delivery_zipcode;
@@ -34,15 +33,14 @@ public class DetailModifyDTO {
 		this.address_code_group_id = address_code_group_id;
 		this.address_code_id = address_code_id;
 		this.member_state_id = member_state_id;
-		this.agree = agree;
 	}
 
 
-	public String getUserid() {
-		return userid;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getBank_name() {
 		return bank_name;
@@ -91,12 +89,6 @@ public class DetailModifyDTO {
 	}
 	public void setMember_state_id(String member_state_id) {
 		this.member_state_id = member_state_id;
-	}
-	public String getAgree() {
-		return agree;
-	}
-	public void setAgree(String agree) {
-		this.agree = agree;
 	}
 
 	

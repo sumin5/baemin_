@@ -6,8 +6,8 @@
 
 	<!-- SIGN UP -->
 	<insert id="signup" parameterType="baemin.member.domain.MemberDTO">
-		insert into tbl_member(userid, username, userpassword, telno, email,address,authority_code)
-		value(#{userid}, #{username}, #{userpassword}, #{telno}, #{email},#{address},#{authority_code})
+		insert into tbl_member(user_id, user_name, user_password, telno, email,address,authority_code,system_id)
+		value(#{user_id}, #{user_name}, #{user_password}, #{telno}, #{email},#{address},#{authority_code},#{user_id})
 	</insert>
 	<!-- test
 	insert into tbl_member (userid, userpassword, username, telno, email)
@@ -18,9 +18,9 @@
 	<select id="logincheck" parameterType="baemin.member.domain.MemberDTO" resultType="int">
 		select count(*)
 		from tbl_member
-		where userid=#{userid} 
+		where user_id=#{user_id} 
 	</select>
-	<!-- test
+	<!-- tes
 		select count(*)
 		from tbl_member
 		where userid='test' and userpassword='test'; -->
@@ -30,26 +30,26 @@
 	<select id="idsame" parameterType="baemin.member.domain.MemberDTO" resultType="int">
 		select count(*)
 		from tbl_member
-		where userid=#{userid}
+		where user_id=#{user_id}
 	</select>
 	
 	<!-- LOGIN MEMBER INFORMATION /PASSWORD ENCODING DECODING  -->
 	<select id="memberInfo" parameterType="baemin.member.domain.MemberDTO" resultType="baemin.member.domain.MemberDTO">
-		select userid, userpassword, username, telno, email
+		select user_id, user_password, user_name, telno, email
 		from tbl_member
-		where userid=#{userid}
+		where user_id=#{user_id}
 	</select>
 	
 	<!-- 
 	
 	 -->
-	 <insert id="postDetailModify" parameterType="baemin.member.domain.DetailModifyDTO">
+	 <insert id="postDetailInsert" parameterType="baemin.member.domain.DetailInsertDTO">
 	 	insert into tbl_member_detail(
-	 		userid,bank_name,bank_number,delivery_zipcode,delivery_road,delivery_detail,
-	 		address_code_group_id,address_code_id,member_state_id,agree)
-	 	value(#{userid},#{bank_name},#{bank_number},#{delivery_zipcode},
+	 		user_id,bank_name,bank_number,delivery_zipcode,delivery_road,delivery_detail,
+	 		address_code_group_id,address_code_id,member_state_group_id,member_state_id,system_id)
+	 	value(#{user_id},#{bank_name},#{bank_number},#{delivery_zipcode},
 	 		#{delivery_road},#{delivery_detail},#{address_code_group_id},
-	 		#{address_code_id},#{member_state_id},#{agree})	
+	 		#{address_code_id},"A",#{member_state_id},#{user_id})	
 	 		
 	 </insert>
 	
