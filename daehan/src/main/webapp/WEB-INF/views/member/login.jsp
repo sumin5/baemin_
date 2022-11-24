@@ -104,7 +104,9 @@
 	          url : "/member/login", //전송할 url
 	          type : "post", //전송할 메서드 타입
 	          dataType : "text", //"json", //전송할 데이터 타입 안정하면 기본 xml형식
-	          data : {"userid" : $("#userid").val() ,"userpassword" : $("#userpassword").val()}, ////전송할 데이터
+	          data : {"userid" : $("#userid").val() ,
+	        	  "userpassword" : $("#userpassword").val()
+	        	  }, ////전송할 데이터
 	          success : function(id){
 	        	  console.log(id);
 	             if(id ==  ""){

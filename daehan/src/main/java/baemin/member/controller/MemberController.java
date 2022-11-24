@@ -91,6 +91,7 @@ public class MemberController {
 		int result = memberservice.postLogin(dto);
 		logger.info("result:{}",result);
 		
+		
 		/*if(result == 0) { //존재하지 않는 아이디가 입력될때 
 		logger.info("아이디체크 if 진입");
 			//model.addAttribute("IDcheck_message","ID_NOT_FOUND");
