@@ -73,11 +73,11 @@
 <body>
 <div class="container join-container p-5">
         <h3 class="text-center">회원 상세 수정 페이지</h3>
-        <form action="/member/detailModify" method="post">
+        <form action="/member/detailInsert" method="post">
             <div class="form-group pt-4">
-                <label for="userid">아이디</label>
+                <label for="user_id">아이디</label>
                 <div class="d-flex">
-	                <input type="text" id="userid" class="form-control" name="userid" value="${userid}" readonly="readonly" >
+	                <input type="text" id="user_id" class="form-control" name="user_id" value="${user_id}" readonly="readonly" >
                 </div>
 			</div>
             	
