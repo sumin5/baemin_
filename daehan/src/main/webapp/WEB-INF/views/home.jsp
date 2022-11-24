@@ -47,7 +47,7 @@
 	
 <div id="menu">
 	<!-- <button><a href="/board/list">리스트로 이동!</a></button> --> <!-- 버튼 안 글씨에 밑줄 O -->
-	<a href="/member/login11" id="login">로그인</a> <!-- 버튼 안 글씨에 밑줄 X -->
+	<a href="/member/login" id="login">로그인</a> <!-- 버튼 안 글씨에 밑줄 X -->
 	<a href="/member/signup" id="signup">회원가입</a> <!-- 버튼 안 글씨에 밑줄 X -->
 </div>
 

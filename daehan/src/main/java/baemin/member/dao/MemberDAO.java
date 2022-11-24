@@ -1,6 +1,6 @@
 package baemin.member.dao;
 
-import baemin.member.domain.DetailModifyDTO;
+import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
 
 public interface MemberDAO {
@@ -18,7 +18,7 @@ public interface MemberDAO {
 	public MemberDTO postLoginpwd (MemberDTO dto) throws Exception;
 
 	//------------------------------회원 상세 디테일 수정 및 입력-------------------	
-	public void postDetailModify(DetailModifyDTO dto)  throws Exception;
+	public void postDetailInsert(DetailInsertDTO dto)  throws Exception;
 
 
 }

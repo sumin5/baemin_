@@ -1,6 +1,5 @@
 package baemin.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import baemin.member.domain.DetailModifyDTO;
+import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
 import baemin.member.service.MemberService;
 
@@ -50,19 +49,27 @@ public class MemberController {
 	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("username") String name
+	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("user_name") String name
 			) throws Exception { // default는 @ModelAttribute	
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
 		
 
 		System.out.println("파람으로 가져온 name값은? " + name);
-		System.out.println("DTO를 통해서 가져온 name값은 ? " + dto.getUsername());
+		System.out.println("DTO를 통해서 가져온 name값은 ? " + dto.getUser_name());
+		System.out.println("DTO를 통해서 가져온 getUser_id값은 ? " + dto.getUser_id());
+		System.out.println("DTO를 통해서 가져온 getUser_password값은 ? " + dto.getUser_password());
+		System.out.println("DTO를 통해서 가져온 getEmail값은 ? " + dto.getEmail());
+		System.out.println("DTO를 통해서 가져온 getTelno값은 ? " + dto.getTelno());
+		System.out.println("DTO를 통해서 가져온 getAddress값은 ? " + dto.getAddress());
+		System.out.println("DTO를 통해서 가져온 getAuthority_code값은 ? " + dto.getAuthority_code());
+		
 		//System.out.println("dto"+dto.get);
 		//비밀번호 암호화
-		String userpassword = dto.getUserpassword();
+		String userpassword = dto.getUser_password();
 		String encdpassword = pwdEncoder.encode(userpassword);
-		dto.setUserpassword(encdpassword);
+		dto.setUser_password(encdpassword);
+		
 		
 		memberservice.postSignup(dto);
 		
@@ -115,14 +122,14 @@ public class MemberController {
 			logger.info("아이디체크 else if 진입");
 			
 			//비밀번호 일치 체크
-			boolean pwdMatch = pwdEncoder.matches(dto.getUserpassword(), memberservice.postLoginpwd(dto).getUserpassword());
+			boolean pwdMatch = pwdEncoder.matches(dto.getUser_password(), memberservice.postLoginpwd(dto).getUser_password());
 			logger.info("pwdMatch : {}",pwdMatch);
 				if (pwdMatch == true) {
-					session.setAttribute("userid", dto.getUserid());
+					session.setAttribute("user_id", dto.getUser_id());
 				}
 			}
 		
-		String member_id = (String)session.getAttribute("userid");
+		String member_id = (String)session.getAttribute("user_id");
 		System.out.println(" / member_id = " + member_id);
 		System.out.println("===========LOGIN CHECK POST RESULT finish===========");
 		//return result;
@@ -152,17 +159,17 @@ public class MemberController {
 	
 	//--------멤버 계정 디테일 페이지 ------
 	@RequestMapping(value="/detailPage",method=RequestMethod.POST)
-	public String detailPage(@RequestParam("userid")String userid,Model model) throws Exception {
-		System.out.println("userid는?" + userid);
-		model.addAttribute("userid",userid);
+	public String detailPage(@RequestParam("user_id")String user_id,Model model) throws Exception {
+		System.out.println("user_id는?" + user_id);
+		model.addAttribute("user_id",user_id);
 		return "/member/detailPage";
 	}
 	
 	//-------멤버 디테일 수정 행위
-	@RequestMapping(value="/detailModify",method=RequestMethod.POST)
-	public String detailPage(DetailModifyDTO dto,Model model) throws Exception {
-		memberservice.postDetailModify(dto);
-		model.addAttribute("useird"+dto.getUserid());
+	@RequestMapping(value="/detailInsert",method=RequestMethod.POST)
+	public String detailPage(DetailInsertDTO dto,Model model) throws Exception {
+		memberservice.postDetailInsert(dto);
+		model.addAttribute("user_id"+dto.getUser_id());
 		
 		
 		return "/member/detailPage";
