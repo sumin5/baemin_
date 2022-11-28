@@ -13,6 +13,11 @@
 	insert into tbl_member (userid, userpassword, username, telno, email)
 		VALUE('test','test','test','test','test'); -->
 		
+	<!-- LOGIN HISTORY -->
+	<insert id="loginHistory" parameterType="baemin.member.domain.MemberDTO">
+		insert into tbl_member_history(user_id, eftc_end_date, system_id)
+		values(#{user_id},'2037-12-31', #{user_id})
+	</insert>
 		
 	<!-- LOGIN CHECK -->
 	<select id="logincheck" parameterType="baemin.member.domain.MemberDTO" resultType="int">
@@ -49,8 +54,13 @@
 	 		address_code_group_id,address_code_id,member_state_group_id,member_state_id,system_id)
 	 	value(#{user_id},#{bank_name},#{bank_number},#{delivery_zipcode},
 	 		#{delivery_road},#{delivery_detail},#{address_code_group_id},
-	 		#{address_code_id},"A",#{member_state_id},#{user_id})	
-	 		
+	 		#{address_code_id},"A",#{member_state_id},#{user_id})		 		
+	 </insert>
+	 
+	 <!-- 광고 수신 동의 -->
+	 <insert id="adMethodInsertion" parameterType="hashMap">
+	 	insert into tbl_ad_method(user_id, ad_method_group_id, ad_method_id, ad_agree_YN, system_id)
+	 	values (#{user_id}, 'E', '2', #{sms}, #{user_id})
 	 </insert>
 	
 </mapper>

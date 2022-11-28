@@ -1,5 +1,6 @@
 package baemin.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
 import baemin.member.service.MemberService;
@@ -54,7 +56,11 @@ public class MemberController {
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
 		
-
+//		String user_id = request.getParameter("user_Id");
+//		
+//		MemberDTO dto1 = new MemberDTO(user_id, null, null, null, null, null, null);
+//		memberservice.postSignup(dto1);
+		
 		System.out.println("파람으로 가져온 name값은? " + name);
 		System.out.println("DTO를 통해서 가져온 name값은 ? " + dto.getUser_name());
 		System.out.println("DTO를 통해서 가져온 getUser_id값은 ? " + dto.getUser_id());
@@ -99,6 +105,7 @@ public class MemberController {
 		logger.info("result:{}",result);
 		
 		
+		
 		/*if(result == 0) { //존재하지 않는 아이디가 입력될때 
 		logger.info("아이디체크 if 진입");
 			//model.addAttribute("IDcheck_message","ID_NOT_FOUND");
@@ -127,6 +134,7 @@ public class MemberController {
 			logger.info("pwdMatch : {}",pwdMatch);
 				if (pwdMatch == true) {
 					session.setAttribute("user_id", dto.getUser_id());
+					memberservice.postLoginHistory(dto);
 				}
 			}
 		
@@ -160,18 +168,28 @@ public class MemberController {
 	
 	//--------멤버 계정 디테일 페이지 ------
 	@RequestMapping(value="/detailPage",method=RequestMethod.POST)
-	public String detailPage(@RequestParam("user_id")String user_id,Model model) throws Exception {
+	public String detailPage(AdMethodDTO dto, @RequestParam("user_id")String user_id,Model model) throws Exception {
 		System.out.println("user_id는?" + user_id);
-		model.addAttribute("user_id",user_id);
+		model.addAttribute("user_id",user_id);		
+		
 		return "/member/detailPage";
 	}
 	
-	//-------멤버 디테일 수정 행위
+	//-------멤버 디테일 수정 행위 + 광고 수신 동의
 	@RequestMapping(value="/detailInsert",method=RequestMethod.POST)
-	public String detailPage(DetailInsertDTO dto,Model model) throws Exception {
-		memberservice.postDetailInsert(dto);
-		model.addAttribute("user_id"+dto.getUser_id());
+	public String detailPage(DetailInsertDTO dto1,AdMethodDTO dto2,Model model) throws Exception {
+//		memberservice.postDetailInsert(dto1);
+		memberservice.adMethodInsertion(dto2);
 		
+		System.out.println("========== ad-method ==========");
+		System.out.println("ad userid: " + dto2.getUser_id());
+		System.out.println("ad agree: " + dto2.getAgree());
+		System.out.println("ad email: " + dto2.getEmail());
+		System.out.println("ad sms: " + dto2.getSms());
+		System.out.println("ad kakaotalk: " + dto2.getKakaotalk());
+		System.out.println("ad phonecall: " + dto2.getPhonecall());
+		
+		model.addAttribute("user_id"+dto1.getUser_id());
 		
 		return "/member/detailPage";
 	}

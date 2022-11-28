@@ -116,7 +116,12 @@
             
             
             <div class="form-group" id="checkboxform" style="text-align: center;" >
-				<input type="checkbox" id="agree" name="agree" value="noncheck"><a> 개인정보 처리방침 및 주의사항에 동의합니다.</a>
+				<input type="checkbox" id="agree" name="agree" value="noncheck"><a> 개인정보 처리방침 및 주의사항에 동의합니다.</a><br/>
+				<label for="ad-method"> 마케팅 활용 및 광고성 정보 수신 동의</label>
+				<input type="checkbox" id="ad-method" name="email" value="Y">이메일
+				<input type="checkbox" id="ad-method" name="sms" value="Y">문자
+				<input type="checkbox" id="ad-method" name="kakaotalk" value="Y">카카오톡
+				<input type="checkbox" id="ad-method" name="phonecall" value="Y">전화 
 			</div>
 		            
             <button type="submit" class="btn btn-success">입력</button>

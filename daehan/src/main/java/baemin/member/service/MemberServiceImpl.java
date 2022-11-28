@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import baemin.member.dao.MemberDAO;
+import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
 
@@ -25,6 +26,12 @@ public class MemberServiceImpl implements MemberService {
 	public int postLogin(MemberDTO dto) throws Exception{
 		return dao.postLogin(dto);
 	}
+	
+	//---------------LOGIN HISTORY---------------
+	@Override
+	public void postLoginHistory(MemberDTO dto) throws Exception{
+		dao.postLoginHistory(dto);
+	}
 
 	//---------------ID SAME CHECK POST---------------
 	@Override
@@ -39,9 +46,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 	//------------------------회원 상세 디테일 수정 및 입력---------------
 	@Override
-	public void postDetailInsert(DetailInsertDTO dto) throws Exception {
+	public void postDetailInsert(DetailInsertDTO dto) throws Exception{
 		dao.postDetailInsert(dto);
 		
+	}
+	
+	//---------- 광고 수신 동의 ------------
+	@Override
+	public void adMethodInsertion (AdMethodDTO dto) throws Exception{
+		dao.adMethodInsertion(dto);
 	}
 	
 	

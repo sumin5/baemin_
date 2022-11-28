@@ -104,13 +104,8 @@
 	          url : "/member/login", //전송할 url
 	          type : "post", //전송할 메서드 타입
 	          dataType : "text", //"json", //전송할 데이터 타입 안정하면 기본 xml형식
-<<<<<<< HEAD
-	          data : {"userid" : $("#userid").val() ,
-	        	  "userpassword" : $("#userpassword").val()
-	        	  }, ////전송할 데이터
-=======
-	          data : {"user_id" : $("#user_id").val() ,"user_password" : $("#user_password").val()}, ////전송할 데이터
->>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
+	          data : {"user_id" : $("#user_id").val() ,
+	        	  "user_password" : $("#user_password").val()}, ////전송할 데이터
 	          success : function(id){
 	        	  console.log(id);
 	             if(id ==  ""){
@@ -144,10 +139,6 @@
 
 <body>
 
-<%-- ${message}
-${test}
-
-${FlashMessage} --%>
 
 <div id="header">
 <h1>LOG-IN</h1>
@@ -180,7 +171,6 @@ ${FlashMessage} --%>
 			<input type="submit" value="회원상세등록">
 		</form>
 		
-		</div>
 	</div>
 	
 	<div id="buttons">
