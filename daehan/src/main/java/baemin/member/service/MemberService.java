@@ -2,10 +2,13 @@ package baemin.member.service;
 
 import java.util.Map;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
-import baemin.member.domain.TestDTO;
-import jdk.jshell.spi.ExecutionControl.ExecutionControlException;
 
 public interface MemberService {
 	
@@ -14,6 +17,9 @@ public interface MemberService {
 	
 	//---------------LOGIN CHECK POST---------------
 	public int postLogin(MemberDTO dto) throws Exception;
+	
+	//---------------LOGIN HISTORY---------------
+	public void postLoginHistory(MemberDTO dto) throws Exception;
 	
 	//---------------ID SAME CHECK POST---------------
 	public int postIdsame(MemberDTO dto) throws Exception;
@@ -28,5 +34,8 @@ public interface MemberService {
 
 	// 회원 상세 디테일 페이지 이동
 	public DetailInsertDTO postDetailPage(String user_id) throws Exception;
+
+	//---------- 광고 수신 동의 ------------
+	public void adMethodInsertion (List<Map<String, Object>> list) throws Exception;
 
 }

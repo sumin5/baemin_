@@ -1,7 +1,15 @@
 package baemin.member.dao;
 
+<<<<<<< HEAD
 import java.util.Map;
 
+=======
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import baemin.member.domain.AdMethodDTO;
+>>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
 import baemin.member.domain.TestDTO;
@@ -13,6 +21,9 @@ public interface MemberDAO {
 	
 	//---------------LOGIN CHECK POST---------------
 	public int postLogin(MemberDTO dto) throws Exception;
+	
+	//---------------LOGIN HISTORY---------------
+	public void postLoginHistory(MemberDTO dto) throws Exception;
 
 	//---------------ID SAME CHECK POST---------------
 	public int postIdsame(MemberDTO dto) throws Exception;
@@ -23,9 +34,14 @@ public interface MemberDAO {
 	//------------------------------회원 상세 디테일 수정 및 입력-------------------	
 	public void postDetailInsert(DetailInsertDTO dto)  throws Exception;
 
+<<<<<<< HEAD
 	public void postTest(Map<String, Object> map);
 
 	public DetailInsertDTO postDetailPage(String user_id);
 
 
+=======
+	//---------- 광고 수신 동의 ------------
+	public void adMethodInsertion(List<Map<String, Object>> list) throws Exception;
+>>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
 }

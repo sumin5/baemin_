@@ -1,11 +1,18 @@
 package baemin.member.dao;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+>>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
 import baemin.member.domain.TestDTO;
@@ -30,6 +37,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(NAMESPACE+".logincheck",dto);
 	}
 	
+	//---------------LOGIN HISTORY---------------
+	@Override
+	public void postLoginHistory(MemberDTO dto) throws Exception{
+		sql.insert(NAMESPACE+".loginHistory",dto);
+	}
+	
 	//---------------ID SAME CHECK POST---------------
 	@Override
 	public int postIdsame(MemberDTO dto) throws Exception{
@@ -44,11 +57,11 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void postDetailInsert(DetailInsertDTO dto) throws Exception {
-		sql.insert(NAMESPACE+".postDetailInsert",dto);
-		
+		sql.insert(NAMESPACE+".postDetailInsert",dto);		
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void postTest(Map<String, Object> map) {
 		sql.insert(NAMESPACE+".postTest",map);
 		
@@ -60,4 +73,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(NAMESPACE+".postDetailPage",user_id);
 		
 	}
+=======
+	public void adMethodInsertion(List<Map<String, Object>> list) throws Exception {
+		sql.insert(NAMESPACE+".adMethodInsertion", list);
+	}
+	
+>>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
 }
