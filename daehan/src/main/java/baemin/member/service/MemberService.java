@@ -1,5 +1,9 @@
 package baemin.member.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
@@ -25,5 +29,6 @@ public interface MemberService {
 	public void postDetailInsert (DetailInsertDTO dto) throws Exception;
 
 	//---------- 광고 수신 동의 ------------
-	public void adMethodInsertion (AdMethodDTO dto) throws Exception;
+	public void adMethodInsertion (List<Map<String, Object>> list) throws Exception;
+
 }

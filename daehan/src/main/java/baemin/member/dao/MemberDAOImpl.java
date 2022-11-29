@@ -2,6 +2,7 @@ package baemin.member.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -54,10 +55,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public void postDetailInsert(DetailInsertDTO dto) throws Exception {
 		sql.insert(NAMESPACE+".postDetailInsert",dto);		
 	}
-	
-	//---------- 광고 수신 동의 ------------	//HashMap으로 바꾸고싶은데 못하겠어... 다음에 할게
+
 	@Override
-	public void adMethodInsertion(AdMethodDTO dto) throws Exception{
-		sql.insert(NAMESPACE+".adMethodInsertion", dto);
+	public void adMethodInsertion(List<Map<String, Object>> list) throws Exception {
+		sql.insert(NAMESPACE+".adMethodInsertion", list);
 	}
+	
 }

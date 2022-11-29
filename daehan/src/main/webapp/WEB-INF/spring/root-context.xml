@@ -22,7 +22,7 @@
 		 id="dataSource">
 		 <property name="driverClassName" value="org.mariadb.jdbc.Driver" />
 		 <property name="url" value="jdbc:mariadb://127.0.0.1:3306/baemin"/> <!--데이터베이스명-->
-		 <property name="username" value="baemin" /><!--세션관리자명-->
+		 <property name="username" value="root" /><!--세션관리자명-->
 		 <property name="password" value="1234" />
 	</bean>
 		

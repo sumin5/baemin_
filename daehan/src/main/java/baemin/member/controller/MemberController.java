@@ -1,5 +1,11 @@
 package baemin.member.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import baemin.member.dao.MemberDAO;
+import baemin.member.dao.MemberDAOImpl;
 import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
@@ -178,18 +186,108 @@ public class MemberController {
 	//-------멤버 디테일 수정 행위 + 광고 수신 동의
 	@RequestMapping(value="/detailInsert",method=RequestMethod.POST)
 	public String detailPage(DetailInsertDTO dto1,AdMethodDTO dto2,Model model) throws Exception {
-//		memberservice.postDetailInsert(dto1);
-		memberservice.adMethodInsertion(dto2);
+		memberservice.postDetailInsert(dto1);
 		
-		System.out.println("========== ad-method ==========");
-		System.out.println("ad userid: " + dto2.getUser_id());
-		System.out.println("ad agree: " + dto2.getAgree());
-		System.out.println("ad email: " + dto2.getEmail());
-		System.out.println("ad sms: " + dto2.getSms());
-		System.out.println("ad kakaotalk: " + dto2.getKakaotalk());
-		System.out.println("ad phonecall: " + dto2.getPhonecall());
+//		Map<String, Object> map1 = new HashMap<String, Object>();
+//		map1.put("adMethod", "1");
+//		map1.put("adAgreeYN", dto2.getEmail());
+//		
+//		Map<String, Object> map2 = new HashMap<String, Object>();
+//		map2.put("adMethod", "2");
+//		map2.put("adAgreeYN", dto2.getSms());
+//		
+//		Map<String, Object> map3 = new HashMap<String, Object>();
+//		map3.put("adMethod", "3");
+//		map3.put("adAgreeYN", dto2.getKakaotalk());
+//		
+//		Map<String, Object> map4 = new HashMap<String, Object>();
+//		map4.put("adMethod", "4");
+//		map4.put("adAgreeYN", dto2.getPhonecall());
+//		
+//
+//		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+//		list.add(map1);
+//		list.add(map2);
+//		list.add(map3);
+//		list.add(map4);
 		
-		model.addAttribute("user_id"+dto1.getUser_id());
+		
+		
+		List<String> yNList = new ArrayList<>();
+//		if(dto2.getEmail() == null) {
+//			dto2.setEmail("N");
+//		}
+//		if(dto2.getSms() == null) {
+//			dto2.setSms("N");
+//		}
+//		if(dto2.getKakaotalk() == null) {
+//			dto2.setKakaotalk("N");
+//		}
+//		if(dto2.getPhonecall() == null) {
+//			dto2.setPhonecall("N");
+//		}
+	
+		
+		yNList.add(dto2.getEmail());
+		yNList.add(dto2.getSms());
+		yNList.add(dto2.getKakaotalk());
+		yNList.add(dto2.getPhonecall());
+		
+// 		null -> N 처리 (mapper에서 COALESCE로함)
+//		for (int i = 0 ; i<yNList.size(); i++) {
+//			if(yNList.get(i)==null) {
+//				yNList.set(i, "N");
+//			}
+//		}	
+		
+		List<Map<String, Object>> adList = new ArrayList<Map<String, Object>>();
+		for (int i = 0 ; i<yNList.size(); i++) {
+			Map<String, Object> adMap = new HashMap<String, Object>();
+			adMap.put("adMethod", (i+1));
+			adMap.put("adAgreeYN",yNList.get(i));
+			adList.add(adMap);
+			System.out.println(yNList.get(i));
+		}	
+		
+		memberservice.adMethodInsertion(adList);		
+		
+		model.addAttribute("user_id"+dto1.getUser_id());		
+		
+		
+		
+		/*************************/
+		
+//		List<String> yNList2 = new ArrayList<>();
+//		yNList2.add(dto2.getEmail());
+//		yNList2.add(dto2.getSms());
+//		yNList2.add(dto2.getKakaotalk());
+//		yNList2.add(dto2.getPhonecall());		
+//		
+//		List<Map<String, Object>> yNList3 = new ArrayList<Map<String, Object>>();
+//		for (int i = 0 ; i<yNList2.size(); i++) {
+//			Map<String, Object> adMap = new HashMap<String, Object>();
+//			adMap.put("adAgreeYN"+(String.valueOf((char)(65+i))), yNList2.get(i));
+//			adMap.put("adMethod"+(String.valueOf((char)(65+i))), (i+1));
+//			yNList3.add(adMap);
+//			System.out.println("::::::::"+yNList3.get(i));
+//			System.out.println("::::::::"+(String.valueOf((char)(65+i))));
+//		}	
+//		
+//		List<Map<String, Object>> adList2 = new ArrayList<Map<String, Object>>();
+//		for (int i = 0 ; i<yNList2.size(); i++) {
+//			Map<String, Object> adMap = new HashMap<String, Object>();
+//			adMap.put("adMethod", (i+1));
+//			adMap.put("adAgreeYN",yNList2.get(i));
+//			adList.add(adMap);
+//			System.out.println(yNList2.get(i));
+//		}	
+//		
+//		memberservice.adMethodInsertion(adList2);		
+//		
+//		model.addAttribute("user_id"+dto1.getUser_id());				
+		
+		/*************************/	
+		
 		
 		return "/member/detailPage";
 	}

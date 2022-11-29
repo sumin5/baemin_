@@ -1,5 +1,9 @@
 package baemin.member.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,12 +54,12 @@ public class MemberServiceImpl implements MemberService {
 		dao.postDetailInsert(dto);
 		
 	}
-	
+
 	//---------- 광고 수신 동의 ------------
 	@Override
-	public void adMethodInsertion (AdMethodDTO dto) throws Exception{
-		dao.adMethodInsertion(dto);
-	}
+	public void adMethodInsertion (List<Map<String, Object>> list) throws Exception{
+		dao.adMethodInsertion(list);		
+	}	
 	
 	
 }

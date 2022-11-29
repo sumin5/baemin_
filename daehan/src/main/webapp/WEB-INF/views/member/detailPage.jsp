@@ -80,7 +80,7 @@
 	                <input type="text" id="user_id" class="form-control" name="user_id" value="${user_id}" readonly="readonly" >
                 </div>
 			</div>
-            	
+           <!--  	
             <div class="form-group pt-3">
                 <label for="bank_name">은행명</label>
                 <input type="text" id="bank_name" class="form-control" name="bank_name" placeholder="은행명" required>
@@ -104,7 +104,7 @@
 			    <input class="form-control" placeholder="배달주소" name="delivery_detail" id="delivery_detail" type="text"  />
 			</div>
 			 <input type="hidden"  name="address_code_group_id" id="address_code_group_id" />
-			 <input type="hidden"  name="address_code_id" id="address_code_id" />
+			 <input type="hidden"  name="address_code_id" id="address_code_id" /> -->
             <div class="form-group"> 회원상태 : 
 				<select name = "member_state_id">
 					<option value="none">선택하세요</option>
