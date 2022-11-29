@@ -37,6 +37,7 @@ import baemin.member.dao.MemberDAOImpl;
 import baemin.member.domain.AdMethodDTO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
+import baemin.member.domain.TestDTO;
 import baemin.member.service.MemberService;
 
 @Controller

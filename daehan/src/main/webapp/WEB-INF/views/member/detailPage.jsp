@@ -103,13 +103,13 @@
 			<div class="form-group">
 			    <input class="form-control" placeholder="배달주소" name="delivery_detail" id="delivery_detail" type="text"  />
 			</div>
-<<<<<<< HEAD
+
 			 <input type="hidden"  name="address_code_group_id" id="address_code_group_id"/>
 			 <input type="hidden"  name="address_code_id" id="address_code_id" />
-=======
+
 			 <input type="hidden"  name="address_code_group_id" id="address_code_group_id" />
 			 <input type="hidden"  name="address_code_id" id="address_code_id" /> -->
->>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
+
             <div class="form-group"> 회원상태 : 
 				<select name = "member_state_id">
 					<option value="none">선택하세요</option>

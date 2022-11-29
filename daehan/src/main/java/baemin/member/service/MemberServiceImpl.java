@@ -1,10 +1,9 @@
 package baemin.member.service;
 
-<<<<<<< HEAD
-=======
+
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 		dao.postDetailInsert(dto);
 		
 	}
-<<<<<<< HEAD
+
 	//----------------회원 상세 페이지 보기-----------
 	@Override
 	public DetailInsertDTO postDetailPage(String user_id) throws Exception {
@@ -76,14 +75,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
-=======
+
 
 	//---------- 광고 수신 동의 ------------
 	@Override
 	public void adMethodInsertion (List<Map<String, Object>> list) throws Exception{
 		dao.adMethodInsertion(list);		
 	}	
->>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
-	
+
 	
 }

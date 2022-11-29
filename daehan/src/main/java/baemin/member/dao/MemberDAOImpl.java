@@ -1,11 +1,10 @@
 package baemin.member.dao;
 
-<<<<<<< HEAD
-=======
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
+
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -61,7 +60,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public void postTest(Map<String, Object> map) {
 		sql.insert(NAMESPACE+".postTest",map);
 		
@@ -73,10 +72,8 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(NAMESPACE+".postDetailPage",user_id);
 		
 	}
-=======
 	public void adMethodInsertion(List<Map<String, Object>> list) throws Exception {
 		sql.insert(NAMESPACE+".adMethodInsertion", list);
 	}
-	
->>>>>>> branch 'master' of https://github.com/sumin5/baemin_.git
+
 }
