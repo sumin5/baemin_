@@ -1,11 +1,14 @@
 package baemin.member.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import baemin.member.dao.MemberDAO;
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
+import baemin.member.domain.TestDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -43,6 +46,23 @@ public class MemberServiceImpl implements MemberService {
 		dao.postDetailInsert(dto);
 		
 	}
+	//----------------회원 상세 페이지 보기-----------
+	@Override
+	public DetailInsertDTO postDetailPage(String user_id) throws Exception {
+		return dao.postDetailPage(user_id);
+	}
+
+	
+
+	@Override
+	public void postTest(Map<String, Object> map) throws Exception {
+		dao.postTest(map);
+		
+	}
+
+	
+	
+	
 	
 	
 }

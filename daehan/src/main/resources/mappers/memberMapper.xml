@@ -42,6 +42,12 @@
 	
 	<!-- 
 	
+	select if(code_name is null,'비어있음',code_name)
+	from tbl_common 
+		where code_group_id = 'B' and code_id =
+		(select if(authority_code is null,'비어있음',authority_code)
+		from tbl_member where user_id='aaa');
+	
 	 -->
 	 <insert id="postDetailInsert" parameterType="baemin.member.domain.DetailInsertDTO">
 	 	insert into tbl_member_detail(
@@ -52,5 +58,29 @@
 	 		#{address_code_id},"A",#{member_state_id},#{user_id})	
 	 		
 	 </insert>
+	 
+	 <insert id="postTest" parameterType="HashMap">
+		insert into tbl_test (user_id,ad_method_group_id,ad_method_id,ad_agree_yn)
+		values	
+			<foreach collection="list1" item="asd" separator=",">
+					(#{asd.user_id},"E",#{asd.ad_method_id},#{asd.ad_agree_yn})	
+			</foreach>
+			
+	 </insert>
+
+	<select id="postDetailPage" parameterType="String" resultType="baemin.member.domain.DetailInsertDTO">
+		select if(user_id is null,'비어있음',user_id),
+			if(bank_name is null,'비어있음',bank_name),
+			if(bank_number is null,'비어있음',bank_number),
+			if(delivery_zipcode is null,'비어있음',delivery_zipcode),
+			if(delivery_road is null,'비어있음',delivery_road),
+			if(delivery_detail is null,'비어있음',delivery_detail),
+			if(address_code_group_id is null,'비어있음',address_code_group_id),
+			if(address_code_id is null,'비어있음',address_code_id),
+			member_state_id
+		from tbl_member_detail
+		where user_id = #{user_id}
+		
+	</select>
 	
 </mapper>

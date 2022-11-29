@@ -140,7 +140,6 @@ ${FlashMessage} --%>
 	<a href="/member/login" id="login">로그인</a>
 </div>
 
-
 <!-- 회원정보 가입란 -->
 <div id="signup-formm">
 	<form id="signup-form" method="post">

@@ -1,11 +1,14 @@
 package baemin.member.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import baemin.member.domain.DetailInsertDTO;
 import baemin.member.domain.MemberDTO;
+import baemin.member.domain.TestDTO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -42,6 +45,19 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void postDetailInsert(DetailInsertDTO dto) throws Exception {
 		sql.insert(NAMESPACE+".postDetailInsert",dto);
+		
+	}
+
+	@Override
+	public void postTest(Map<String, Object> map) {
+		sql.insert(NAMESPACE+".postTest",map);
+		
+	}
+
+	// --  디테일 페이지 상세 보기 ---------------------
+	@Override
+	public DetailInsertDTO postDetailPage(String user_id) {
+		return sql.selectOne(NAMESPACE+".postDetailPage",user_id);
 		
 	}
 }

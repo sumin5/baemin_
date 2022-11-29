@@ -168,7 +168,7 @@ ${FlashMessage} --%>
 	</div>
 
 	<div id="login_welcome" class="login_welcome" style="display:none">
-		<div id="welcome" value=""></div>님! 환영합니다!
+		<div id="welcome" value="">aaa</div>님! 환영합니다!
 		<form action="/member/detailPage" method="post">
 			<input type="hidden" id="userid1" name="user_id" value="">
 			<input type="submit" value="회원상세등록">
