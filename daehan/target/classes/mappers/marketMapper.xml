@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baemin.member.mapper.marketMapper">
+
+	<!-- 음식점 Detail 저장  -->
+	<insert id="marketDetailInsert" parameterType="baemin.market.domain.MarketDTO">
+		insert into tbl_market (
+			market_id,
+			market_name,
+			category_code_group_id, <!-- G -->
+			category_code_id,
+			market_zipcode,
+			address_code_group_id,
+			address_code_id,
+			market_state_group_id, <!-- A -->
+			market_state_id,
+			market_road,
+			address_detail,
+			phone,
+			opening_time,
+			closing_time,
+			min_price,
+			system_id			
+		)
+		values (
+			#{marketId},
+			#{marketName},
+			'G',
+			#{categoryCodeId},
+			#{marketZipcode},
+			SUBSTR(#{marketZipcode},1,2),
+			SUBSTR(#{marketZipcode},3,1),
+			'A',
+			'1',
+			#{marketRoad},
+			#{addressDetail},
+			#{phone},
+			#{openingTime},
+			#{closingTime},
+			#{minPrice},
+			#{marketId}
+		)	
+	</insert>
+	
+	<!-- 음식점 History 테이블 저장 -->
+	<insert id="marketHistoryInsert" parameterType="baemin.market.domain.MarketDTO">
+		insert into tbl_market_history (
+			market_id,
+			end_date,
+			system_id
+		)
+		values (
+			#{marketId},
+			'2037-12-31',
+			#{marketId}
+		)	
+	</insert>
+
+	<!-- 메뉴 Page 저장 -->
+	<insert id="menuInsertion" parameterType="baemin.market.domain.MenuDTO">
+		insert into tbl_menu (
+			market_id,
+			menu_name,
+			menu_price,
+			introduce,
+			system_id
+		)
+		values (
+			#{marketId},
+			#{menuName},
+			#{menuPrice},
+			#{introduce},
+			#{marketId}
+		)
+	</insert>
+</mapper>
