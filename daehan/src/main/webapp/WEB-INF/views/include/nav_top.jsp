@@ -10,17 +10,17 @@
 onmouseout="this.style.background='white'; this.style.textDecoration='none';">사용자정보</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 </c:if>
 <c:if test="${authority_code != '01'}">
-&nbsp;&nbsp; <a id="hypertext" href="/member/test" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
-onmouseout="this.style.background='white'; this.style.textDecoration='none';">사용자정보</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+&nbsp;&nbsp; <a id="hypertext" href="/member/detailPage" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">디테일페이지</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 </c:if>
 <a id="hypertext" href="/board/listPage?num=1" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
 onmouseout="this.style.background='white'; this.style.textDecoration='none';">게시판</a> &nbsp;&nbsp; | &nbsp;&nbsp;
 
-<a id="hypertext" href="/board/eduView" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
-onmouseout="this.style.background='white'; this.style.textDecoration='none';">강의</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+<a id="hypertext" href="/market/marketDetailPage" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">음식점(세윤)</a> &nbsp;&nbsp; | &nbsp;&nbsp;
 
-<a id="hypertext" href="/board/sourceView" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
-onmouseout="this.style.background='white'; this.style.textDecoration='none';">소스 보기</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+<a id="hypertext" href="/market/marketOwnerPage" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">사장님 페이지</a> &nbsp;&nbsp; | &nbsp;&nbsp;
 
 <a id="hypertext" href="/board/logout" onMouseover="this.style.background='#96FFFF'; this.style.textDecoration='underline';" 
 onmouseout="this.style.background='white'; this.style.textDecoration='none';">로그아웃</a>&nbsp;&nbsp; ]

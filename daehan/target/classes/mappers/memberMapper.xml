@@ -65,8 +65,12 @@
 	 
 	 <!-- 광고 수신 동의 -->
 	 <insert id="adMethodInsertion" parameterType="hashMap">
-	 	insert into tbl_ad_method(user_id, ad_method_group_id, ad_method_id, ad_agree_YN, system_id)
-	 	values (#{user_id}, 'E', '2', #{sms}, #{user_id})
+	 	insert into tbl_ad_method1(user_id, ad_method_group_id, ad_method_id, ad_agree_YN, system_id)
+	 	values 
+	 	<foreach collection="list" item="list" separator=",">	
+	 	('seyoun1' , 'E', #{list.adMethod}, COALESCE(#{list.adAgreeYN} , 'N'), 'seyoun1' )
+	 	</foreach>	
+	 
 	 </insert>
 	 
 	 <insert id="postTest" parameterType="HashMap">
@@ -92,5 +96,7 @@
 		where user_id = #{user_id}
 		
 	</select>
+
+	
 	
 </mapper>

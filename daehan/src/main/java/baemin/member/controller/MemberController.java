@@ -189,7 +189,7 @@ public class MemberController {
 	}
 	
 	//--------멤버 계정 디테일 페이지 ------
-	@RequestMapping(value="/detailPage",method=RequestMethod.POST)
+	@RequestMapping(value="/detailPage",method=RequestMethod.GET)
 	public String detailPage(@RequestParam("user_id")String user_id,Model model) throws Exception {
 		System.out.println("user_id는?" + user_id);
 	
