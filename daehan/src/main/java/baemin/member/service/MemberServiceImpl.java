@@ -60,8 +60,8 @@ public class MemberServiceImpl implements MemberService {
 
 	//----------------회원 상세 페이지 보기-----------
 	@Override
-	public DetailInsertDTO postDetailPage(String user_id) throws Exception {
-		return dao.postDetailPage(user_id);
+	public DetailInsertDTO postDetailPage(String userId) throws Exception {
+		return dao.postDetailPage(userId);
 	}
 
 	

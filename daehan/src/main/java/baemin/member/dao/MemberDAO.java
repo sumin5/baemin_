@@ -35,7 +35,7 @@ public interface MemberDAO {
 
 	public void postTest(Map<String, Object> map);
 
-	public DetailInsertDTO postDetailPage(String user_id);
+	public DetailInsertDTO postDetailPage(String userId);
 
 
 

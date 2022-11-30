@@ -69,16 +69,16 @@ public class MemberController {
 	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("user_name") String name
+	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("userName") String name
 			) throws Exception { // default는 @ModelAttribute	
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
 		
 
 		System.out.println("파람으로 가져온 name값은? " + name);
-		System.out.println("DTO를 통해서 가져온 name값은 ? " + dto.getUser_name());
-		System.out.println("DTO를 통해서 가져온 getUser_id값은 ? " + dto.getUser_id());
-		System.out.println("DTO를 통해서 가져온 getUser_password값은 ? " + dto.getUser_password());
+		System.out.println("DTO를 통해서 가져온 name값은 ? " + dto.getUserName());
+		System.out.println("DTO를 통해서 가져온 getUserId값은 ? " + dto.getUserId());
+		System.out.println("DTO를 통해서 가져온 getUser_password값은 ? " + dto.getUserPassword());
 		System.out.println("DTO를 통해서 가져온 getEmail값은 ? " + dto.getEmail());
 		System.out.println("DTO를 통해서 가져온 getTelno값은 ? " + dto.getTelno());
 		System.out.println("DTO를 통해서 가져온 getAddress값은 ? " + dto.getAddress());
@@ -86,14 +86,14 @@ public class MemberController {
 		
 		//System.out.println("dto"+dto.get);
 		//비밀번호 암호화
-		String userpassword = dto.getUser_password();
+		String userpassword = dto.getUserPassword();
 		String encdpassword = pwdEncoder.encode(userpassword);
-		dto.setUser_password(encdpassword);
+		dto.setUserPassword(encdpassword);
 		
 		
 		memberservice.postSignup(dto);
 		
-		return "redirect:/member/login";
+		return "redirect:/";
 		
 		// redirect 새로고침 느낌 파라메터 전달이 안됨 전달하고싶으면  RedirectAttributes
 		// forward 바로바로 이동되는거 파라메터 자유롭게 전달
@@ -141,11 +141,13 @@ public class MemberController {
 			logger.info("아이디체크 else if 진입");
 			
 			//비밀번호 일치 체크
-			boolean pwdMatch = pwdEncoder.matches(dto.getUser_password(), memberservice.postLoginpwd(dto).getUser_password());
+			
+			System.out.println("누군데요?  " + memberservice.postLoginpwd(dto).getUserPassword());
+			boolean pwdMatch = pwdEncoder.matches(dto.getUserPassword(), memberservice.postLoginpwd(dto).getUserPassword());
 			logger.info("pwdMatch : {}",pwdMatch);
 				if (pwdMatch == true) {
 					
-					session.setAttribute("user_id", dto.getUser_id());
+					session.setAttribute("userId", dto.getUserId());
 				}
 				else {
 					System.out.println("비번 틀림");
@@ -160,8 +162,9 @@ public class MemberController {
 		
 		
 		
-		session.setAttribute("user_name",memberservice.postLoginpwd(dto).getUser_name());
-		System.out.println("  user_name = " + session.getAttribute("user_name"));
+		session.setAttribute("userName",memberservice.postLoginpwd(dto).getUserName());
+		session.setAttribute("userId",memberservice.postLoginpwd(dto).getUserId());
+		System.out.println("  userName = " + session.getAttribute("userName"));
 		System.out.println("===========LOGIN CHECK POST RESULT finish===========");
 		//return result;
 		return "main";
@@ -169,11 +172,10 @@ public class MemberController {
 	}
 	
 	//---------------Logout Get---------------
-	@ResponseBody
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public void getLogout(HttpSession session) throws Exception{
-		session.removeAttribute("userid");
-		
+	public String getLogout(HttpSession session) throws Exception{
+		session.removeAttribute("userId");
+		return "redirect:/";
 	}
 	
 	
@@ -188,16 +190,15 @@ public class MemberController {
 		return result;
 	}
 	
-	//--------멤버 계정 디테일 페이지 ------
-	@RequestMapping(value="/detailPage",method=RequestMethod.GET)
-	public String detailPage(@RequestParam("user_id")String user_id,Model model) throws Exception {
-		System.out.println("user_id는?" + user_id);
 	
-		
-		DetailInsertDTO dto=memberservice.postDetailPage(user_id);
-		
-		model.addAttribute("user_id",user_id);
-		return "/member/detailPage";
+	@RequestMapping(value="/detailPage",method=RequestMethod.GET)
+	public String detailPage(@RequestParam("userId")String userId,Model model) throws Exception {
+		System.out.println("userId는?" + userId);
+	
+		DetailInsertDTO dto = memberservice.postDetailPage(userId);
+		model.addAttribute("dto",dto);	
+		model.addAttribute("userId",userId);
+				return "/member/detailPage";
 	}
 	
 	//-------멤버 디테일 수정 행위
@@ -268,7 +269,7 @@ public class MemberController {
 		
 		memberservice.adMethodInsertion(adList);		
 		
-		model.addAttribute("user_id"+dto1.getUser_id());		
+		model.addAttribute("userId"+dto1.getUserId());		
 		
 		
 		
@@ -301,7 +302,7 @@ public class MemberController {
 //		
 //		memberservice.adMethodInsertion(adList2);		
 //		
-//		model.addAttribute("user_id"+dto1.getUser_id());				
+//		model.addAttribute("UserId"+dto1.getUserId());				
 		
 		/*************************/	
 		
@@ -333,7 +334,7 @@ public class MemberController {
 //				Map<String, Object> map = new HashMap<String, Object>();
 //				map.put("ad_agree_yn",list.get(i));
 //				map.put("ad_method_id",i+1);
-//				map.put("user_id",dto.getUser_id());
+//				map.put("UserId",dto.getUserId());
 //				list1.add(map);
 //			}
 //			
@@ -388,34 +389,35 @@ public class MemberController {
 			 if(strMap.equals("Y")&&a.equals("e")) {
 				 System.out.println("값이 e면서 Y래요");
 				 TestDTO dto1 = new TestDTO();
-				 dto1.setAd_agree_yn((String) arrayA.get(0).get("e"));
-				 dto1.setAd_method_id((String) arrayB.get(0).get("e"));
-				 dto1.setUser_id(dto.getUser_id());
+				 dto1.setAdAgreeYn((String) arrayA.get(0).get("e"));
+				 dto1.setAdMethodId((String) arrayB.get(0).get("e"));
+				 dto1.setUserId(dto.getUserId());
+	
 				 list.add(dto1);
 				 continue;
 			 }
 			 if(strMap.equals("Y")&&a.equals("s")) {
 				 System.out.println("값이 s면서 Y래요");
 				 TestDTO dto1 = new TestDTO();
-				 dto1.setAd_agree_yn((String) arrayA.get(0).get("s"));
-				 dto1.setAd_method_id((String) arrayB.get(0).get("s"));
-				 dto1.setUser_id(dto.getUser_id());
+				 dto1.setAdAgreeYn((String) arrayA.get(0).get("s"));
+				 dto1.setAdMethodId((String) arrayB.get(0).get("s"));
+				 dto1.setUserId(dto.getUserId());
 				 list.add(dto1);
 				 continue;
 			 }if(strMap.equals("Y")&&a.equals("k")){
 				 System.out.println("값이 k면서 Y래요");
 				 TestDTO dto1 = new TestDTO();
-				 dto1.setAd_agree_yn((String) arrayA.get(0).get("k"));
-				 dto1.setAd_method_id((String) arrayB.get(0).get("k"));
-				 dto1.setUser_id(dto.getUser_id());
+				 dto1.setAdAgreeYn((String) arrayA.get(0).get("k"));
+				 dto1.setAdMethodId((String) arrayB.get(0).get("k"));
+				 dto1.setUserId(dto.getUserId());
 				 list.add(dto1);
 				 continue;
 			 }if(strMap.equals("Y")&&a.equals("p")) {
 				 System.out.println("값이 p면서 Y래요");
 				 TestDTO dto1 = new TestDTO();
-				 dto1.setAd_agree_yn((String) arrayA.get(0).get("p"));
-				 dto1.setAd_method_id((String) arrayB.get(0).get("p"));
-				 dto1.setUser_id(dto.getUser_id());
+				 dto1.setAdAgreeYn((String) arrayA.get(0).get("p"));
+				 dto1.setAdMethodId((String) arrayB.get(0).get("p"));
+				 dto1.setUserId(dto.getUserId());
 				 
 				 System.out.println("어레이b의 p값 ? " + arrayB.get(0).get("p"));
 				 list.add(dto1);

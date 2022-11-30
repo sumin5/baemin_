@@ -102,7 +102,7 @@ ${FlashMessage} --%>
 <div id="signup-formm">
 	<form id="signup-form" method="post" action="test">
 		<label>ID</label>
-			<input id="user_id" class="user_id" name="user_id" placeholder="아이디를 입력하세요"/> 	
+			<input id="userId" class="userId" name="userId" placeholder="아이디를 입력하세요"/> 	
 			
 		  <div class="form-group" id="checkboxform" style="text-align: center;" >
 				<label for="ad-method"> 마케팅 활용 및 광고성 정보 수신 동의</label>

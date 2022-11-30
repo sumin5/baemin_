@@ -44,12 +44,12 @@
                 
                 
                 // 우편번호 주소그룹 코도 앞에 2글자
-                $("[name=address_code_group_id]").val(data.zonecode[0]+data.zonecode[1]);
+                $("[name=addressCodeGroupId]").val(data.zonecode[0]+data.zonecode[1]);
                 // 우편번호 주소 코드아이디 1글자
-                $("[name=address_code_id]").val(data.zonecode[2]);
+                $("[name=addressCodeId]").val(data.zonecode[2]);
                 
-                $("[name=delivery_zipcode]").val(data.zonecode);
-                $("[name=delivery_road]").val(fullRoadAddr);
+                $("[name=deliveryZipcode]").val(data.zonecode);
+                $("[name=deliveryRoad]").val(fullRoadAddr);
                 
                 
 
@@ -75,24 +75,25 @@
         <h3 class="text-center">회원 상세 수정 페이지</h3>
         <form action="/member/detailInsert" method="post">
             <div class="form-group pt-4">
-                <label for="user_id">아이디</label>
+                <label for="userId">아이디</label>
                 <div class="d-flex">
-	                <input type="text" id="user_id" class="form-control" name="user_id" value="${user_id}" readonly="readonly" >
+	                <input type="text" id="userId" class="form-control" name="userId" value="${userId}" readonly="readonly" >
                 </div>
 			</div>
 	
+			</div>  	
             <div class="form-group pt-3">
-                <label for="bank_name">은행명</label>
-                <input type="text" id="bank_name" class="form-control" name="bank_name" placeholder="은행명" required>
+                <label for="bankName">은행명</label>
+                <input type="text" id="bankName" class="form-control" name="bankName" value="${dto.bankName}" placeholder="은행명" required>
             </div>
             <div class="form-group pt-3">
-                <label for="bank_number">계좌번호</label>
-                <input type="text" id="bank_number" class="form-control" name="bank_number" placeholder="계좌번호" required>
+                <label for="bankNumber">계좌번호</label>
+                <input type="text" id="bankNumber" class="form-control" name="bankNumber" value="${dto.bankNumber}" placeholder="계좌번호" required>
             </div>
             
 			 <div class="form-group pt-3">
-            	<label for="delivery_zipcode">주소</label><br />        
-				<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="delivery_zipcode" id="delivery_zipcode" type="text" readonly="readonly" >
+            	<label for="deliveryZipcode">주소</label><br />        
+				<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="deliveryZipcode" id="deliveryZipcode" value="${dto.deliveryZipcode}" type="text" readonly="readonly" >
 				<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 			</div>
 			
@@ -101,17 +102,17 @@
 			</div>
 			
 			<div class="form-group">
-			    <input class="form-control" placeholder="배달주소" name="delivery_detail" id="delivery_detail" type="text"  />
+			    <input class="form-control" placeholder="배달주소" name="deliveryDetail" id="deliveryDetail" value="${dto.deliveryDetail}" type="text"  />
 			</div>
 
-			 <input type="hidden"  name="address_code_group_id" id="address_code_group_id"/>
-			 <input type="hidden"  name="address_code_id" id="address_code_id" />
+			 <input type="hidden"  name="addressCodeGroupId" id="addressCodeGroupId" value="${dto.addressCodeGroupId}"/>
+			 <input type="hidden"  name="addressCodeId" id="addressCodeId" value="${dto.addressCodeId}"/>
 
-			 <input type="hidden"  name="address_code_group_id" id="address_code_group_id" />
-			 <input type="hidden"  name="address_code_id" id="address_code_id" />
+			 <input type="hidden"  name="addressCodeGroupId" id="addressCodeGroupId" value="${dto.addressCodeGroupId}"/>
+			 <input type="hidden"  name="addressCodeId" id="addressCodeId" value="${dto.addressCodeId}"/> 
 
             <div class="form-group"> 회원상태 : 
-				<select name = "member_state_id">
+				<select name = "memberStateId">
 					<option value="none">선택하세요</option>
 					<option value="1">활성화</option>
 					<option value="2">비활성화</option>
@@ -132,7 +133,7 @@
             <button type="submit" class="btn btn-success">입력</button>
          
             <a href="#" class="btn btn-danger">취소</a>
-           <!-- <a href="AdminLoginView" class="btn btn-primary" >로그인</a> -->
+     		 <a href="AdminLoginView" class="btn btn-primary" >로그인</a>
         </form>
     </div>
 </body>

@@ -12,31 +12,31 @@ public class MemberDTO {
 			`authority_code` CHAR(1) NULL DEFAULT '0' COLLATE 'utf8mb3_general_ci',
 			PRIMARY KEY (`userid`) USING BTREE
 		)*/
-	private String user_id;
-	private String user_password;
-	private String user_name;
+	private String userId;
+	private String userPassword;
+	private String userName;
 	private String telno;
 	private String email;
 	private String address;
 	private String authority_code;
 	//------------------Getter/Setter------------------
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getUser_password() {
-		return user_password;
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getTelno() {
 		return telno;
@@ -50,7 +50,6 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 	public String getAddress() {
 		return address;
 	}
@@ -63,24 +62,22 @@ public class MemberDTO {
 	public void setAuthority_code(String authority_code) {
 		this.authority_code = authority_code;
 	}
-	
-	
-	//------------------Constructor------------------
-	public MemberDTO() {
-		super();
-	} // 기본생성자
-	
-	public MemberDTO(String user_id, String user_password, String user_name, String telno, String email, String address,
+	public MemberDTO(String userId, String userPassword, String userName, String telno, String email, String address,
 			String authority_code) {
 		super();
-		this.user_id = user_id;
-		this.user_password = user_password;
-		this.user_name = user_name;
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userName = userName;
 		this.telno = telno;
 		this.email = email;
 		this.address = address;
 		this.authority_code = authority_code;
 	}
+	public MemberDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 
 	
 }
