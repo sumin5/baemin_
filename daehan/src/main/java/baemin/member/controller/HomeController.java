@@ -26,9 +26,9 @@ public class HomeController {
 	public String home(Locale locale, Model model,HttpSession session) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		if(session.getAttribute("user_id") != null) {
+		if(session.getAttribute("userId") != null) {
 			System.out.println("session 값" + session);
-			System.out.println("session 값" + session.getAttribute("user_id"));
+			System.out.println("session 값" + session.getAttribute("userId"));
 			
 			return "main";
 		}

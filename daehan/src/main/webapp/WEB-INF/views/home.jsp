@@ -13,17 +13,17 @@
 
 function loginCheck(){
 
-	if(document.loginForm.user_id.value == '') 
+	if(document.loginForm.userId.value == '') 
 		{
 		alert('아이디를 입력하세요.');
-		document.loginForm.user_id.focus();
+		document.loginForm.userId.focus();
 		return false;
 		}
-	var Passwd = document.getElementById('user_password').value;
+	var Passwd = document.getElementById('userPassword').value;
     if(Passwd == '')
     	{
     	alert('비밀번호를 입력하세요.');
-    	document.loginForm.user_password.focus();
+    	document.loginForm.userPassword.focus();
     	return false;
     	}
     document.loginForm.action = '/member/login';
@@ -92,7 +92,7 @@ a:active { color: red; }
   padding: 10px 10px;
 }
 
-.user_id, .username, .user_password {
+.userId, .userName, .userPassword {
   width: 100%;
   border:none;
   outline:none;
@@ -150,12 +150,12 @@ a:active { color: red; }
      <c:if test="${member == null}">
      	<h1>로그인</h1>
      	<div class="loginFormDivision">
-         	<div class="idForm"><input type="text" name="user_id" id="user_id" class="user_id" placeholder="아이디를 입력하세요."></div>
-         	<div class="passwdForm"><input type="password" id="user_password" name="user_password" class="user_password" onkeydown="press(this.form)" placeholder="비밀번호를 입력하세요."></div>
+         	<div class="idForm"><input type="text" name="userId" id="userId" class="userId" placeholder="아이디를 입력하세요."></div>
+         	<div class="passwdForm"><input type="password" id="userPassword" name="userPassword" class="userPassword" onkeydown="press(this.form)" placeholder="비밀번호를 입력하세요."></div>
          	<input type="button" id="login_btn" class="login_btn" value="로그인" onclick="loginCheck()"> 
      	</div> 
      
-     	<div class="bottomText">사용자가 아니면 ▶<a id="hypertext" href="/board/mbrInfoRegister" 
+     	<div class="bottomText">사용자가 아니면 ▶<a id="hypertext" href="/member/signup" 
      	       onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
      	       onmouseout="this.style.background='white'; this.style.textDecoration='none';">여기</a>를 눌러 등록을 해주세요.<br><br></div>
      </c:if>

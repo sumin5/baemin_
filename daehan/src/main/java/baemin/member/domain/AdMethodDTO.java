@@ -1,7 +1,7 @@
 package baemin.member.domain;
 
 public class AdMethodDTO {
-	private String user_id;
+	private String userId;
 	private String email;
 	private String sms;
 	private String kakaotalk;
@@ -14,13 +14,13 @@ public class AdMethodDTO {
 		// TODO Auto-generated constructor stub
 	}	
 	
-	public String getUser_id() {
-		return user_id;
+	public String getuserId() {
+		return userId;
 	}
-	public AdMethodDTO(String user_id, String email, String sms, String kakaotalk, String phonecall, String agree,
+	public AdMethodDTO(String userId, String email, String sms, String kakaotalk, String phonecall, String agree,
 			String ad_method) {
 		super();
-		this.user_id = user_id;
+		this.userId = userId;
 		this.email = email;
 		this.sms = sms;
 		this.kakaotalk = kakaotalk;
@@ -36,9 +36,9 @@ public class AdMethodDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public AdMethodDTO(String user_id, String email, String sms, String kakaotalk, String phonecall) {
+	public AdMethodDTO(String userId, String email, String sms, String kakaotalk, String phonecall) {
 		super();
-		this.user_id = user_id;
+		this.userId = userId;
 		this.email = email;
 		this.sms = sms;
 		this.kakaotalk = kakaotalk;
@@ -48,8 +48,8 @@ public class AdMethodDTO {
 	
 	
 	
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setuserId(String userId) {
+		this.userId = userId;
 	}
 	public String getEmail() {
 		return email;

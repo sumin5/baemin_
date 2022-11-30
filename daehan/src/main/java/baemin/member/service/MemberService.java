@@ -33,7 +33,7 @@ public interface MemberService {
 	public void postTest(Map<String, Object> map) throws Exception;
 
 	// 회원 상세 디테일 페이지 이동
-	public DetailInsertDTO postDetailPage(String user_id) throws Exception;
+	public DetailInsertDTO postDetailPage(String userId) throws Exception;
 
 	//---------- 광고 수신 동의 ------------
 	public void adMethodInsertion (List<Map<String, Object>> list) throws Exception;

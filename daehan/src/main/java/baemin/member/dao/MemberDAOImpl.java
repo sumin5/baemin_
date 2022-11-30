@@ -68,8 +68,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// --  디테일 페이지 상세 보기 ---------------------
 	@Override
-	public DetailInsertDTO postDetailPage(String user_id) {
-		return sql.selectOne(NAMESPACE+".postDetailPage",user_id);
+	public DetailInsertDTO postDetailPage(String userId) {
+		return sql.selectOne(NAMESPACE+".postDetailPage",userId);
 		
 	}
 	public void adMethodInsertion(List<Map<String, Object>> list) throws Exception {

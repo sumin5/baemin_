@@ -3,20 +3,33 @@ package baemin.member.domain;
 import java.util.List;
 
 public class TestDTO {
-	private String user_id;
+	private String userId;
 	private String email;  // Y
 	private String sms;    // Y
 	private String kakaotalk;  // N
 	private String phonecall;  // N 
-	private String ad_method_id;  // 1
-	private String ad_agree_yn;  // Y,N
-	
-
-	public String getUser_id() {
-		return user_id;
+	private String adMethodId;  // 1
+	private String adAgreeYn;  // Y,N
+	public TestDTO() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public TestDTO(String userId, String email, String sms, String kakaotalk, String phonecall, String adMethodId,
+			String adAgreeYn) {
+		super();
+		this.userId = userId;
+		this.email = email;
+		this.sms = sms;
+		this.kakaotalk = kakaotalk;
+		this.phonecall = phonecall;
+		this.adMethodId = adMethodId;
+		this.adAgreeYn = adAgreeYn;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getEmail() {
 		return email;
@@ -42,36 +55,21 @@ public class TestDTO {
 	public void setPhonecall(String phonecall) {
 		this.phonecall = phonecall;
 	}
-	
-	public TestDTO(String user_id, String email, String sms, String kakaotalk, String phonecall, String ad_method_id,
-			String ad_agree_yn) {
-		super();
-		this.user_id = user_id;
-		this.email = email;
-		this.sms = sms;
-		this.kakaotalk = kakaotalk;
-		this.phonecall = phonecall;
-		this.ad_method_id = ad_method_id;
-		this.ad_agree_yn = ad_agree_yn;
+	public String getAdMethodId() {
+		return adMethodId;
 	}
-	public String getAd_agree_yn() {
-		return ad_agree_yn;
+	public void setAdMethodId(String adMethodId) {
+		this.adMethodId = adMethodId;
 	}
-	public void setAd_agree_yn(String ad_agree_yn) {
-		this.ad_agree_yn = ad_agree_yn;
+	public String getAdAgreeYn() {
+		return adAgreeYn;
 	}
-	public String getAd_method_id() {
-		return ad_method_id;
-	}
-	public void setAd_method_id(String ad_method_id) {
-		this.ad_method_id = ad_method_id;
+	public void setAdAgreeYn(String adAgreeYn) {
+		this.adAgreeYn = adAgreeYn;
 	}
 	
+
 	
-	public TestDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 }
