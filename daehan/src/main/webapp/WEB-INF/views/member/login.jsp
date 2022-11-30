@@ -91,8 +91,8 @@
 	
 	/* 로그인 빈칸 여부 체크 */
 	function login() {
-		if($("#user_id").val() ==''){alert("아이디를 입력하세요."); $("#user_id").focus(); return false; }
-		if($("#user_password").val() ==''){alert("비밀번호를 입력하세요."); $("#user_password").focus(); return false; }
+		if($("#userId").val() ==''){alert("아이디를 입력하세요."); $("#userId").focus(); return false; }
+		if($("#userPassword").val() ==''){alert("비밀번호를 입력하세요."); $("#userPassword").focus(); return false; }
 		console.log("login 진입");
 		idcheck();
 		
@@ -104,13 +104,13 @@
 	          url : "/member/login", //전송할 url
 	          type : "post", //전송할 메서드 타입
 	          dataType : "text", //"json", //전송할 데이터 타입 안정하면 기본 xml형식
-	          data : {"user_id" : $("#user_id").val() ,
-	        	  "user_password" : $("#user_password").val()}, ////전송할 데이터
+	          data : {"userId" : $("#userId").val() ,
+	        	  "userPassword" : $("#userPassword").val()}, ////전송할 데이터
 	          success : function(id){
 	        	  console.log(id);
 	             if(id ==  ""){
 	                alert("일치하는 회원정보가 없습니다.");
-	                $("#user_id").val("").focus();
+	                $("#userId").val("").focus();
 	             }else if(id != ""){
 	                //location.href = '/board/list';
 	                document.getElementById('login_first').style.visibility="hidden"; //hide
@@ -154,10 +154,10 @@
 	<div id="login_first">
 		<form id="login_area" method="post"> 
 			<label>ID</label>
-			<input type="text" id="user_id" name="user_id" class="user_id" placeholder="아이디를 입력하세요.">
+			<input type="text" id="userId" name="userId" class="userId" placeholder="아이디를 입력하세요.">
 			 <!-- 비밀번호 안보이게 type을 text에서 password로 변경 -->
 			 <label>PASSWORD</label>
-			<input type="password" id="user_password" name="user_password" class="user_password" placeholder="비밀번호를 입력하세요.">
+			<input type="password" id="userPassword" name="userPassword" class="userPassword" placeholder="비밀번호를 입력하세요.">
 		</form>
 		<div class="links">
 			<a href=#>비밀번호를 잃어버리셨나요?</a>
@@ -165,9 +165,9 @@
 	</div>
 
 	<div id="login_welcome" class="login_welcome" style="display:none">
-		<div id="welcome" value=""></div>님! 환영합니다!
+		<div id="welcome" value="">aaa</div>님! 환영합니다!
 		<form action="/member/detailPage" method="post">
-			<input type="hidden" id="userid1" name="user_id" value="">
+			<input type="hidden" id="userid1" name="userId" value="">
 			<input type="submit" value="회원상세등록">
 		</form>
 		
