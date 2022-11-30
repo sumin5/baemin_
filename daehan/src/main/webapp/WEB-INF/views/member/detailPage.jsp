@@ -79,38 +79,35 @@
                 <div class="d-flex">
 	                <input type="text" id="userId" class="form-control" name="userId" value="${userId}" readonly="readonly" >
                 </div>
-			</div>
-			${dto}
-			${dto.userId}
-           <!--  	
+			</div>  	
             <div class="form-group pt-3">
                 <label for="bankName">은행명</label>
-                <input type="text" id="bankName" class="form-control" name="bankName" placeholder="은행명" required>
+                <input type="text" id="bankName" class="form-control" name="bankName" value="${dto.bankName}" placeholder="은행명" required>
             </div>
             <div class="form-group pt-3">
                 <label for="bankNumber">계좌번호</label>
-                <input type="text" id="bankNumber" class="form-control" name="bankNumber" placeholder="계좌번호" required>
+                <input type="text" id="bankNumber" class="form-control" name="bankNumber" value="${dto.bankNumber}" placeholder="계좌번호" required>
             </div>
             
 			 <div class="form-group pt-3">
             	<label for="deliveryZipcode">주소</label><br />        
-				<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="deliveryZipcode" id="deliveryZipcode" type="text" readonly="readonly" >
+				<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="deliveryZipcode" id="deliveryZipcode" value="${dto.deliveryZipcode}" type="text" readonly="readonly" >
 				<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 			</div>
 			
 			<div class="form-group">
-			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="deliveryRoad" id="deliveryRoad" type="text" readonly="readonly" />
+			    <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="deliveryRoad" id="deliveryRoad" value="${dto.deliveryRoad}" type="text" readonly="readonly" />
 			</div>
 			
 			<div class="form-group">
-			    <input class="form-control" placeholder="배달주소" name="deliveryDetail" id="deliveryDetail" type="text"  />
+			    <input class="form-control" placeholder="배달주소" name="deliveryDetail" id="deliveryDetail" value="${dto.deliveryDetail}" type="text"  />
 			</div>
 
-			 <input type="hidden"  name="addressCodeGroupId" id="addressCodeGroupId"/>
-			 <input type="hidden"  name="addressCodeId" id="addressCodeId" />
+			 <input type="hidden"  name="addressCodeGroupId" id="addressCodeGroupId" value="${dto.addressCodeGroupId}"/>
+			 <input type="hidden"  name="addressCodeId" id="addressCodeId" value="${dto.addressCodeId}"/>
 
-			 <input type="hidden"  name="addressCodeGroupId" id="addressCodeGroupId" />
-			 <input type="hidden"  name="addressCodeId" id="addressCodeId" /> -->
+			 <input type="hidden"  name="addressCodeGroupId" id="addressCodeGroupId" value="${dto.addressCodeGroupId}"/>
+			 <input type="hidden"  name="addressCodeId" id="addressCodeId" value="${dto.addressCodeId}"/> 
 
             <div class="form-group"> 회원상태 : 
 				<select name = "memberStateId">
@@ -134,7 +131,7 @@
             <button type="submit" class="btn btn-success">입력</button>
          
             <a href="#" class="btn btn-danger">취소</a>
-           <!-- <a href="AdminLoginView" class="btn btn-primary" >로그인</a> -->
+     		 <a href="AdminLoginView" class="btn btn-primary" >로그인</a>
         </form>
     </div>
 </body>

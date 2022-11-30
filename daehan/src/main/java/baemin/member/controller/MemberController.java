@@ -196,9 +196,7 @@ public class MemberController {
 		System.out.println("userId는?" + userId);
 	
 		DetailInsertDTO dto = memberservice.postDetailPage(userId);
-		
 		model.addAttribute("dto",dto);	
-		
 		model.addAttribute("userId",userId);
 		
 		return "/member/detailPage";
