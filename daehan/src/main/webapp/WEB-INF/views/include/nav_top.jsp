@@ -14,13 +14,16 @@ onmouseout="this.style.background='white'; this.style.textDecoration='none';">�
 onmouseout="this.style.background='white'; this.style.textDecoration='none';">사용자정보</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 </c:if>
 <a id="hypertext" href="/board/listPage?num=1" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
-onmouseout="this.style.background='white'; this.style.textDecoration='none';">게시판</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">음식점리스트</a> &nbsp;&nbsp; | &nbsp;&nbsp;
 
 <a id="hypertext" href="/board/eduView" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
-onmouseout="this.style.background='white'; this.style.textDecoration='none';">강의</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">주문이력</a> &nbsp;&nbsp; | &nbsp;&nbsp;
 
 <a id="hypertext" href="/board/sourceView" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
-onmouseout="this.style.background='white'; this.style.textDecoration='none';">소스 보기</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">리뷰이력</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+
+<a id="hypertext" href="/board/sourceView" onMouseover="this.style.background='pink'; this.style.textDecoration='underline';" 
+onmouseout="this.style.background='white'; this.style.textDecoration='none';">쿠폰이력</a> &nbsp;&nbsp; | &nbsp;&nbsp;
 
 <a id="hypertext" href="/member/logout" onMouseover="this.style.background='#96FFFF'; this.style.textDecoration='underline';" 
 onmouseout="this.style.background='white'; this.style.textDecoration='none';">로그아웃</a>&nbsp;&nbsp; ]

@@ -69,7 +69,7 @@ public class MemberController {
 	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("user_name") String name
+	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("userName") String name
 			) throws Exception { // default는 @ModelAttribute	
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
@@ -93,7 +93,7 @@ public class MemberController {
 		
 		memberservice.postSignup(dto);
 		
-		return "redirect:/member/login";
+		return "redirect:/";
 		
 		// redirect 새로고침 느낌 파라메터 전달이 안됨 전달하고싶으면  RedirectAttributes
 		// forward 바로바로 이동되는거 파라메터 자유롭게 전달
