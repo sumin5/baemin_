@@ -7,7 +7,11 @@
 	<!-- SIGN UP -->
 	<insert id="signup" parameterType="baemin.member.domain.MemberDTO">
 		insert into tbl_member(user_id, user_name, user_password, telno, email,address,authority_code,system_id)
+<<<<<<< HEAD
 		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authority_code},#{userId})
+=======
+		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authorityCode},#{userId})
+>>>>>>> refs/heads/master
 	</insert>
 	<!-- test
 	insert into tbl_member (userid, userpassword, username, telno, email)
@@ -40,7 +44,7 @@
 	
 	<!-- LOGIN MEMBER INFORMATION /PASSWORD ENCODING DECODING  -->
 	<select id="memberInfo" parameterType="baemin.member.domain.MemberDTO" resultType="baemin.member.domain.MemberDTO">
-		select user_id , user_password , user_name , telno, email
+		select *
 		from tbl_member
 		where user_id=#{userId}
 	</select>
@@ -83,18 +87,20 @@
 	 </insert>
 
 	<select id="postDetailPage" parameterType="String" resultType="baemin.member.domain.DetailInsertDTO">
-		select if(user_id is null,'비어있음',user_id),
-			if(bank_name is null,'비어있음',bank_name),
-			if(bank_number is null,'비어있음',bank_number),
-			if(delivery_zipcode is null,'비어있음',delivery_zipcode),
-			if(delivery_road is null,'비어있음',delivery_road),
-			if(delivery_detail is null,'비어있음',delivery_detail),
-			if(address_code_group_id is null,'비어있음',address_code_group_id),
-			if(address_code_id is null,'비어있음',address_code_id),
-			member_state_id
+		select if(user_id is null,'비어있음',user_id) user_id,
+			if(bank_name is null,'비어있음',bank_name) bank_name,
+			if(bank_number is null,'비어있음',bank_number)bank_number,
+			if(delivery_zipcode is null,'비어있음',delivery_zipcode)delivery_zipcode,
+			if(delivery_road is null,'비어있음',delivery_road)delivery_road,
+			if(delivery_detail is null,'비어있음',delivery_detail)delivery_detail,
+			if(address_code_group_id is null,'비어있음',address_code_group_id)address_code_group_id,
+			if(address_code_id is null,'비어있음',address_code_id)address_code_id,
+			if(member_state_id is null,'비어있음',member_state_id)member_state_id
 		from tbl_member_detail
 		where user_id = #{userId}
 		
 	</select>
+
+	
 	
 </mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baemin.member.mapper.marketMapper">
+
+	<!-- 음식점 상세정보 입력  -->
+	<insert id="marketDetailInsert" parameterType="baemin.market.domain.MarketDTO">
+		insert into tbl_market (
+			market_id,
+			market_name,
+			category_code_group_id,
+			category_code_id,
+			market_zipcode,
+			address_code_group_id,
+			address_code_id,
+			market_state_group_id,
+			market_state_id,
+			market_road,
+			address_detail,
+			phone,
+			opening_time,
+			closing_time,
+			min_price,
+			system_id			
+		)
+		values (
+			#{marketId},
+			#{marketName},
+			'G',
+			#{categoryCodeId},
+			#{marketZipcode},
+			SUBSTR(#{marketZipcode},1,2),
+			SUBSTR(#{marketZipcode},3,1),
+			'A',
+			'1',
+			#{marketRoad},
+			#{addressDetail},
+			#{phone},
+			#{openingTime},
+			#{closingTime},
+			#{minPrice},
+			#{marketId}
+		)	
+	</insert>
+	
+	<!-- 음식점 이력 입력-->
+	<insert id="marketHistoryInsert" parameterType="baemin.market.domain.MarketDTO">
+		insert into tbl_market_history (
+			market_id,
+			end_date,
+			system_id
+		)
+		values (
+			#{marketId},
+			'2037-12-31',
+			#{marketId}
+		)	
+	</insert>
+	
+	<!-- 메뉴 menuId max값 -->
+	<select id="getMenuId" parameterType="string" resultType="int">
+		select nvl2(a.market_id, a.mx, 1)
+		from (select market_id,
+				  	 max(menu_id)+1 mx,
+					 count(*) cnt		
+			  from tbl_menu
+			  where market_id =#{marketId}) a
+	</select>
+
+	<!-- 메뉴 정보 입력 --> 
+	<insert id="menuInsertion" parameterType="baemin.market.domain.MenuDTO">
+		insert into tbl_menu (
+			market_id, 
+			menu_id,
+			menu_name,
+			menu_price,
+			introduce,
+			system_id)
+		values (
+			#{marketId},
+			#{menuId},
+			#{menuName},
+			#{menuPrice},
+			#{introduce},
+			#{marketId}
+		)			
+	</insert> 
+	
+	<!-- 메뉴 이력 입력 -->
+	<insert id="menuHistoryInsertion" parameterType="baemin.market.domain.MenuDTO">
+		insert into tbl_menu_history (
+			menu_id,
+			market_id, 
+			end_date,
+			system_id)
+		values (
+			#{menuId},
+			#{marketId},
+			'2037-12-31',
+			#{marketId}
+		)
+	</insert>
+	
+</mapper>
