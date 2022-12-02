@@ -157,7 +157,7 @@ ${FlashMessage} --%>
 		<label>Address</label>
 			<input id="address" class="address" name="address" placeholder="주소를 입력하세요"/> <br> <br>		
 		<label>권한</label>
-			<select name="authority_code">
+			<select name="authorityCode">
 				<option value="none">선택하세요</option>
 				<option value="1">관리자</option>
 				<option value="2">판매자</option>

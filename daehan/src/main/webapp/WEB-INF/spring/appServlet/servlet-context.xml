@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="baemin.member.controller" />
+	<context:component-scan base-package="baemin.market.controller" />
 	
 	
 	

@@ -69,7 +69,7 @@ public class MemberController {
 	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("user_name") String name
+	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("userName") String name
 			) throws Exception { // default는 @ModelAttribute	
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
@@ -82,18 +82,18 @@ public class MemberController {
 		System.out.println("DTO를 통해서 가져온 getEmail값은 ? " + dto.getEmail());
 		System.out.println("DTO를 통해서 가져온 getTelno값은 ? " + dto.getTelno());
 		System.out.println("DTO를 통해서 가져온 getAddress값은 ? " + dto.getAddress());
-		System.out.println("DTO를 통해서 가져온 getAuthority_code값은 ? " + dto.getAuthority_code());
+		System.out.println("DTO를 통해서 가져온 getAuthorityCode값은 ? " + dto.getAuthorityCode());
 		
 		//System.out.println("dto"+dto.get);
 		//비밀번호 암호화
 		String userpassword = dto.getUserPassword();
 		String encdpassword = pwdEncoder.encode(userpassword);
 		dto.setUserPassword(encdpassword);
-		
-		
+		String authorityCode = dto.getAuthorityCode();
+				
 		memberservice.postSignup(dto);
 		
-		return "redirect:/member/login";
+		return "redirect:/";
 		
 		// redirect 새로고침 느낌 파라메터 전달이 안됨 전달하고싶으면  RedirectAttributes
 		// forward 바로바로 이동되는거 파라메터 자유롭게 전달
@@ -137,17 +137,20 @@ public class MemberController {
 			}
 		}*/
 		
+		MemberDTO memberDTO = memberservice.postLoginpwd(dto);
+		
 		if(result == 1){		
 			logger.info("아이디체크 else if 진입");
 			
 			//비밀번호 일치 체크
 			
-			System.out.println("누군데요?  " + memberservice.postLoginpwd(dto).getUserPassword());
-			boolean pwdMatch = pwdEncoder.matches(dto.getUserPassword(), memberservice.postLoginpwd(dto).getUserPassword());
+			System.out.println("누군데요?  " + memberDTO.getUserPassword());
+			boolean pwdMatch = pwdEncoder.matches(dto.getUserPassword(), memberDTO.getUserPassword());
 			logger.info("pwdMatch : {}",pwdMatch);
 				if (pwdMatch == true) {
 					
 					session.setAttribute("userId", dto.getUserId());
+					
 				}
 				else {
 					System.out.println("비번 틀림");
@@ -160,13 +163,17 @@ public class MemberController {
 			return "redirect:/";
 		}
 		
-		
-		
-		session.setAttribute("userName",memberservice.postLoginpwd(dto).getUserName());
-		session.setAttribute("userId",memberservice.postLoginpwd(dto).getUserId());
+		session.setAttribute("userName",memberDTO.getUserName());
+		session.setAttribute("userId",memberDTO.getUserId());
+		session.setAttribute("authorityCode", memberDTO.getAuthorityCode());
+		session.setAttribute("telno", memberDTO.getTelno());
+
 		System.out.println("  userName = " + session.getAttribute("userName"));
+		System.out.println("  authorityCode = " + session.getAttribute("authorityCode"));
+		System.out.println("  telno = " + session.getAttribute("telno"));
 		System.out.println("===========LOGIN CHECK POST RESULT finish===========");
-		//return result;
+	
+	
 		return "main";
 		
 	}
@@ -190,18 +197,15 @@ public class MemberController {
 		return result;
 	}
 	
-	//--------멤버 계정 디테일 페이지 ------
+	
 	@RequestMapping(value="/detailPage",method=RequestMethod.GET)
 	public String detailPage(@RequestParam("userId")String userId,Model model) throws Exception {
 		System.out.println("userId는?" + userId);
 	
 		DetailInsertDTO dto = memberservice.postDetailPage(userId);
-		
 		model.addAttribute("dto",dto);	
-		
 		model.addAttribute("userId",userId);
-		
-		return "/member/detailPage";
+				return "/member/detailPage";
 	}
 	
 	//-------멤버 디테일 수정 행위
@@ -438,6 +442,14 @@ public class MemberController {
 			System.out.println("test.jsp");
 			//
 			return "main";
+		}
+		
+		
+		//-------------(GET)주문 페이지 이동----------------
+		@RequestMapping(value="/orderPage", method=RequestMethod.GET)
+		public void orderPage(HttpSession session) {
+			System.out.println("================= orderPage GET 진입 =================");
+			
 		}
 		
 

@@ -36,9 +36,9 @@
 		 <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<context:component-scan base-package="baemin.member.domain"/>
     <context:component-scan base-package="baemin.member.service"/>
     <context:component-scan base-package="baemin.member.dao"/>
+    <context:component-scan base-package="baemin.market" />
 	
 		
 </beans>
