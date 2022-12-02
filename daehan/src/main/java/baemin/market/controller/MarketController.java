@@ -25,53 +25,47 @@ public class MarketController {
 	//logger
 	public static final Logger logger = LoggerFactory.getLogger(MarketController.class);	
 	
-	//---------------음식점 Detail Page GET---------------
+	//--------------(GET)음식점 사장님 페이지 이동-----------------
+	@RequestMapping(value="/marketOwnerPage", method=RequestMethod.GET)
+	public void marketOwnerPage(HttpSession session) {
+		System.out.println("============== marketOwnerPage GET 진입 ==============");
+	}
+	
+	//---------------(GET)음식점 상세정보 페이지 이동---------------
 	@RequestMapping(value="/marketDetailPage", method=RequestMethod.GET)
 	public void marketDetailPage(HttpSession session) {
-		logger.info("-------------페이지 이동 메서드 진입-----------");
-		
-		System.out.println("marketDetailPage GET 진입");
-		System.out.println("session의 user_id: "+ session.getAttribute("user_id"));		
-
-		
-		logger.info("-------------페이지 이동 메서드 진입-----------");
+		System.out.println("============== marketDetailPage GET 진입 =============");
 	}	
 	
-	//---------------음식점 Detail Page POST---------------
+	//-------------------음식점 상세정보 및 이력 입력--------------------
 	@RequestMapping(value="/marketDetailInsert", method=RequestMethod.POST)
 	public String marketDetailInsert(MarketDTO dto, HttpSession session) {
-		System.out.println("marketDetailInsert 컨트롤러 진입");
-
-		logger.info("dto:{}", dto);
-		System.out.println("marketDetailInsert 컨트롤러 진입-----1-----");
-		session.setAttribute("marketId", dto.getMarketId());
+		System.out.println("============ marketDetailInsert POST 진입 ============");
 		
-		System.out.println("marketDetailInsert 컨트롤러 진입-----2-----");
 		marketservice.marketDetailInsert(dto);		
-		marketservice.marketHistoryInsert(dto); //이부분은 나중에  member부분으로 옮겨야할듯
-		return "market/marketOwnerPage";
-	}
-	
-	//--------------marketOwnerPage GET-----------------
-	@RequestMapping(value="/marketOwnerPage", method=RequestMethod.GET)
-	public void marketOwnerPage(MarketDTO dto, HttpSession session) {
-		System.out.println("marketOwnerPage GET 진입");
-	}
-	
-	//-------------메뉴 Page GET----------------
-	@RequestMapping(value="/menuPage", method=RequestMethod.GET)
-	public void menuPage(MarketDTO dto, HttpSession session) {
-		session.setAttribute("marketId", dto.getMarketId());
-		System.out.println("menuPage GET 진입");
-	}
-	
-	//-------------메뉴 Page POST----------------
-	@RequestMapping(value="/menuInsertion", method=RequestMethod.POST)
-	public void menuInsertion(MenuDTO dto, HttpSession session) {
-		System.out.println("menuInsertion POST 진입");
 		
+		return "main";
+	}	
+	
+	//-------------(GET)메뉴 페이지 이동----------------
+	@RequestMapping(value="/menuPage", method=RequestMethod.GET)
+	public void menuPage(HttpSession session) {		
+		System.out.println("================= menuPage GET 진입 =================");
+		
+		String marketId = (String) session.getAttribute("userId");
+		
+		int menuId = marketservice.getMenuId(marketId);
+		session.setAttribute("menuId", menuId);
+	}
+	
+	//-------------메뉴 정보 및 이력 입력----------------
+	@RequestMapping(value="/menuInsertion", method=RequestMethod.POST)
+	public String menuInsertion(MenuDTO dto, HttpSession session) {
+		System.out.println("============== menuInsertion POST 진입 ==============");	
 		
 		marketservice.menuInsertion(dto);
+		
+		return "main";
 	}
 	
 }

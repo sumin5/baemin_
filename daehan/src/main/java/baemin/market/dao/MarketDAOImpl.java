@@ -17,18 +17,22 @@ public class MarketDAOImpl implements MarketDAO {
 	
 	@Override
 	public void marketDetailInsert(MarketDTO dto) {
-		sql.insert(NAMESPACE+".marketDetailInsert", dto);		
-	}
-
-	@Override
-	public void marketHistoryInsert(MarketDTO dto) {
+		sql.insert(NAMESPACE+".marketDetailInsert", dto);	
 		sql.insert(NAMESPACE+".marketHistoryInsert", dto);		
+	}
+	
+	@Override
+	public int getMenuId(String marketId) {
+		int menuId = sql.selectOne(NAMESPACE+".getMenuId", marketId);
+		return menuId;
 	}
 
 	@Override
 	public void menuInsertion(MenuDTO dto) {
-		sql.insert(NAMESPACE+".menuInsertion", dto);
-		
+		sql.insert(NAMESPACE+".menuInsertion", dto);	
+		sql.insert(NAMESPACE+".menuHistoryInsertion", dto);
 	}
+
+	
 
 }

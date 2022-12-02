@@ -18,7 +18,7 @@ public class MemberDTO {
 	private String telno;
 	private String email;
 	private String address;
-	private String authority_code;
+	private String authorityCode;
 	//------------------Getter/Setter------------------
 	public String getUserId() {
 		return userId;
@@ -56,11 +56,11 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getAuthority_code() {
-		return authority_code;
+	public String getAuthorityCode() {
+		return authorityCode;
 	}
-	public void setAuthority_code(String authority_code) {
-		this.authority_code = authority_code;
+	public void setAuthorityCode(String authority_code) {
+		this.authorityCode = authority_code;
 	}
 	public MemberDTO(String userId, String userPassword, String userName, String telno, String email, String address,
 			String authority_code) {
@@ -71,7 +71,7 @@ public class MemberDTO {
 		this.telno = telno;
 		this.email = email;
 		this.address = address;
-		this.authority_code = authority_code;
+		this.authorityCode = authority_code;
 	}
 	public MemberDTO() {
 		super();

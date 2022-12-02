@@ -68,17 +68,18 @@
 <form action="/market/marketDetailInsert" method="post">
 	<div class="form-group">
 		<label for="marketId">음식점아이디</label>
-		<input class="form-control" type="text" id="marketId" name="marketId" value="${user_id}" readonly />	<!-- 추후에 user_id를 market_id로 수정하기 -->		
+		<input class="form-control" type="text" id="marketId" name="marketId" value="${userId}" readonly />	
 	</div>
 	
 	<div class="form-group">
 		<label for="marketName">음식점이름</label>
-		<input class="form-control" type="text" id="marketName" name="marketName" value="${user_name}" readonly /> 
+		<input class="form-control" type="text" id="marketName" name="marketName" value="${userName}" readonly /> 
 	</div>
 	
 	<div class="from-group">
 		<label for="categoryCodeId">음식점 카테고리</label><br/>
 		<select name="categoryCodeId">
+			<option value="none" selected >카테고리를 선택하세요</option>
 			<option value="1">족발, 보쌈</option>
 			<option value="2">찜, 탕, 찌개</option>
 			<option value="3">돈까스, 회, 일식</option>
@@ -112,7 +113,7 @@
 	
 	<div class="form-group">
 		<label for="phone">전화번호</label>
-		<input class="form-control" type="text" id="phone" name="phone" />		
+		<input class="form-control" type="text" id="phone" name="phone" value="${telno}"/>		
 	</div>
 	
 	<div class="form-group">

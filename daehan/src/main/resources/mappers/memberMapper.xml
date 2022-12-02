@@ -7,7 +7,7 @@
 	<!-- SIGN UP -->
 	<insert id="signup" parameterType="baemin.member.domain.MemberDTO">
 		insert into tbl_member(user_id, user_name, user_password, telno, email,address,authority_code,system_id)
-		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authority_code},#{userId})
+		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authorityCode},#{userId})
 	</insert>
 	<!-- test
 	insert into tbl_member (userid, userpassword, username, telno, email)
@@ -40,7 +40,7 @@
 	
 	<!-- LOGIN MEMBER INFORMATION /PASSWORD ENCODING DECODING  -->
 	<select id="memberInfo" parameterType="baemin.member.domain.MemberDTO" resultType="baemin.member.domain.MemberDTO">
-		select user_id , user_password , user_name , telno, email
+		select *
 		from tbl_member
 		where user_id=#{userId}
 	</select>

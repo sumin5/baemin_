@@ -17,15 +17,18 @@ public class MarketServiceImpl implements MarketService {
 	public void marketDetailInsert(MarketDTO dto) {
 		dao.marketDetailInsert(dto);
 	}
-
+	
 	@Override
-	public void marketHistoryInsert(MarketDTO dto) {
-		dao.marketHistoryInsert(dto);
+	public int getMenuId(String marketId) {
+		int menuId = dao.getMenuId(marketId);
+		return menuId;
 	}
 
 	@Override
 	public void menuInsertion(MenuDTO dto) {
 		dao.menuInsertion(dto);		
 	}
+
+	
 
 }
