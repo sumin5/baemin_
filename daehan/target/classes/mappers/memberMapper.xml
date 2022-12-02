@@ -7,6 +7,7 @@
 	<!-- SIGN UP -->
 	<insert id="signup" parameterType="baemin.member.domain.MemberDTO">
 		insert into tbl_member(user_id, user_name, user_password, telno, email,address,authority_code,system_id)
+		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authority_code},#{userId})
 		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authorityCode},#{userId})
 	</insert>
 	<!-- test
