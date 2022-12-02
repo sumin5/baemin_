@@ -1,17 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-<h2 class="text-center">À½½ÄÁ¡ »çÀå´Ô ÆäÀÌÁö</h2>
-<hr/><br/>
-
-<a href="/market/menuPage">¸Ş´º ÀÔ·Â</a>
+<h2 class="text-center">${userId} ìŒì‹ì  ì‚¬ì¥ë‹˜ í˜ì´ì§€</h2>
+<hr/>
+<%@ include file="../include/market_nav_top.jsp" %>
+<%@ include file="../include/nav_top.jsp" %>
+<hr/>
 
 </body>
 </html>

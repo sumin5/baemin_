@@ -10,16 +10,20 @@
 </head>
 <body>
  
-<h2 class="text-center">${marketId} 메뉴 입력 페이지</h2>
+<h2 class="text-center">${userId} 메뉴 입력 페이지</h2>
 <hr/><br/>
 
 <div>
 <form action="/market/menuInsertion" method="post">
 	<div class="form-group">
 		<label for="marketId">음식점아이디</label>
-		<input class="form-control" type="text" id="marketId" name="marketId" value="${mar0m-group">
+		<input class="form-control" type="text" id="marketId" name="marketId" value="${userId}">
+	</div>
+	
+	<div>
 		<label for="menuName">메뉴 이름</label>
 		<input class="form-control" type="text" id="menuName" name="menuName" />
+		<input type="hidden" id="menuId" name="menuId" value="${menuId}" />
 	</div>
 	
 	<div class="form-group">
