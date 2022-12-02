@@ -69,7 +69,7 @@ public class MemberController {
 	
 	//---------------Signup page POST---------------
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
-	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("user_name") String name
+	public String postSignup(@ModelAttribute MemberDTO dto,@RequestParam("userName") String name
 			) throws Exception { // default는 @ModelAttribute	
 		//모델은 객체의 매핑
 		//리퀘스트파람은 변수의 매핑
