@@ -7,7 +7,7 @@
 	<!-- SIGN UP -->
 	<insert id="signup" parameterType="baemin.member.domain.MemberDTO">
 		insert into tbl_member(user_id, user_name, user_password, telno, email,address,authority_code,system_id)
-		value(#{user_id}, #{user_name}, #{user_password}, #{telno}, #{email},#{address},#{authority_code},#{user_id})
+		value(#{userId}, #{userName}, #{userPassword}, #{telno}, #{email},#{address},#{authority_code},#{user_id})
 	</insert>
 	<!-- test
 	insert into tbl_member (userid, userpassword, username, telno, email)
@@ -16,14 +16,14 @@
 	<!-- LOGIN HISTORY -->
 	<insert id="loginHistory" parameterType="baemin.member.domain.MemberDTO">
 		insert into tbl_member_history(user_id, eftc_end_date, system_id)
-		values(#{user_id},'2037-12-31', #{user_id})
+		values(#{userId},'2037-12-31', #{userId})
 	</insert>
 		
 	<!-- LOGIN CHECK -->
 	<select id="logincheck" parameterType="baemin.member.domain.MemberDTO" resultType="int">
 		select count(*)
 		from tbl_member
-		where user_id=#{user_id} 
+		where user_id=#{userId} 
 	</select>
 	<!-- tes
 		select count(*)
@@ -35,14 +35,14 @@
 	<select id="idsame" parameterType="baemin.member.domain.MemberDTO" resultType="int">
 		select count(*)
 		from tbl_member
-		where user_id=#{user_id}
+		where user_id=#{userId}
 	</select>
 	
 	<!-- LOGIN MEMBER INFORMATION /PASSWORD ENCODING DECODING  -->
 	<select id="memberInfo" parameterType="baemin.member.domain.MemberDTO" resultType="baemin.member.domain.MemberDTO">
-		select user_id, user_password, user_name, telno, email
+		select user_id , user_password , user_name , telno, email
 		from tbl_member
-		where user_id=#{user_id}
+		where user_id=#{userId}
 	</select>
 	
 	<!-- 
@@ -58,22 +58,26 @@
 	 	insert into tbl_member_detail(
 	 		user_id,bank_name,bank_number,delivery_zipcode,delivery_road,delivery_detail,
 	 		address_code_group_id,address_code_id,member_state_group_id,member_state_id,system_id)
-	 	value(#{user_id},#{bank_name},#{bank_number},#{delivery_zipcode},
-	 		#{delivery_road},#{delivery_detail},#{address_code_group_id},
-	 		#{address_code_id},"A",#{member_state_id},#{user_id})		 		
+	 	value(#{userId},#{bankName},#{bankNumber},#{deliveryZipcode},
+	 		#{deliveryRoad},#{deliveryDetail},#{addressCodeGroupId},
+	 		#{addressCodeId},"A",#{memberStateId},#{userId})		 		
 	 </insert>
 	 
 	 <!-- 광고 수신 동의 -->
 	 <insert id="adMethodInsertion" parameterType="hashMap">
-	 	insert into tbl_ad_method(user_id, ad_method_group_id, ad_method_id, ad_agree_YN, system_id)
-	 	values (#{user_id}, 'E', '2', #{sms}, #{user_id})
+	 	insert into tbl_ad_method1(user_id, ad_method_group_id, ad_method_id, ad_agree_YN, system_id)
+	 	values 
+	 	<foreach collection="list" item="list" separator=",">	
+	 	('seyoun1' , 'E', #{list.adMethod}, COALESCE(#{list.adAgreeYN} , 'N'), 'seyoun1' )
+	 	</foreach>	
+	 
 	 </insert>
 	 
 	 <insert id="postTest" parameterType="HashMap">
 		insert into tbl_test (user_id,ad_method_group_id,ad_method_id,ad_agree_yn)
 		values	
 			<foreach collection="list1" item="asd" separator=",">
-					(#{asd.user_id},"E",#{asd.ad_method_id},#{asd.ad_agree_yn})	
+					(#{asd.userId},"E",#{asd.adMethodId},#{asd.adAgreeYn})	
 			</foreach>
 			
 	 </insert>
@@ -89,7 +93,7 @@
 			if(address_code_id is null,'비어있음',address_code_id),
 			member_state_id
 		from tbl_member_detail
-		where user_id = #{user_id}
+		where user_id = #{userId}
 		
 	</select>
 	
