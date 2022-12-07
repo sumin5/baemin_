@@ -14,6 +14,9 @@
 	<logger name="baemin.member.controller">
 		<level value="info" />
 	</logger>
+	<logger name="baemin.market.controller">
+		<level value="debug" />
+	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">

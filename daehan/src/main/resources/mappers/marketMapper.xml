@@ -49,13 +49,11 @@
 		insert into tbl_market_history (
 			market_id,
 			end_date,
-			system_id
-		)
+			system_id)
 		values (
 			#{marketId},
 			'2037-12-31',
-			#{marketId}
-		)	
+			#{marketId})	
 	</insert>
 	
 	<!-- 메뉴 menuId max값 -->
@@ -65,26 +63,50 @@
 				  	 max(menu_id)+1 mx,
 					 count(*) cnt		
 			  from tbl_menu
-			  where market_id =#{marketId}) a
-	</select>
-
+			  where market_id = #{marketId}) a
+	</select>	 
+	
+	<!-- 메뉴 리스트 가져오기 -->
+	<select id="getMenuList" parameterType="String" resultType="baemin.market.domain.MenuDTO">
+		with b as
+		(select tod.order_num ton,
+				tod.market_id tmki,
+				tod.menu_id tmni,
+				sum(tod.how_many) sm,	<!-- 메뉴별 누적 주문 건수-->
+				tor.user_id tui,
+				tor.order_cancel_YN toc
+		from tbl_order tor join tbl_order_detail tod on tor.order_num = tod.order_num 
+		where tod.market_id = #{marketId}
+			and tor.order_cancel_YN = "N"	<!-- Y:주문취소, N:주문OK -->
+		group by tod.menu_id)
+		select a.market_id ,	
+				a.menu_id ,
+				a.menu_name ,
+				a.menu_price ,
+				a.introduce ,
+				date_format(a.sys_reg_date, '%Y-%m-%d') sys_reg_date,
+				coalesce (b.sm, 0) as sm 
+		from tbl_menu a left outer join	b 
+		on a.market_id = b.tmki
+			and a.menu_id = b.tmni
+		where a.market_id = #{marketId}
+		order by a.menu_id;	
+	</select>		
+	
 	<!-- 메뉴 정보 입력 --> 
 	<insert id="menuInsertion" parameterType="baemin.market.domain.MenuDTO">
-		insert into tbl_menu (
-			market_id, 
-			menu_id,
-			menu_name,
-			menu_price,
-			introduce,
-			system_id)
-		values (
-			#{marketId},
-			#{menuId},
-			#{menuName},
-			#{menuPrice},
-			#{introduce},
-			#{marketId}
-		)			
+		insert into tbl_menu (market_id, 
+							menu_id,
+							menu_name,
+							menu_price,
+							introduce,
+							system_id) 
+		values( #{marketId}, 
+				#{menuId},
+				#{menuName},
+				#{menuPrice}, 
+				#{introduce},
+				#{marketId})
 	</insert> 
 	
 	<!-- 메뉴 이력 입력 -->
@@ -101,5 +123,59 @@
 			#{marketId}
 		)
 	</insert>
+	
+	<!-- 메뉴 정보 가져오기 -->
+	<select id="getMenuDetail" parameterType="map" resultType="baemin.market.domain.MenuDTO">
+		select market_id,
+				menu_id,
+				menu_name,
+				menu_price,
+				introduce
+		from tbl_menu
+		where market_id = #{marketId}
+			and menu_id = #{menuId}
+	</select>
+	
+	<!-- 메뉴 정보 업데이트 -->
+	<update id="menuUpdate" parameterType="baemin.market.domain.MenuDTO">
+		update tbl_menu 
+		set menu_name = #{menuName},
+			menu_price = #{menuPrice},
+			introduce = #{introduce},
+			sys_mod_date = now()
+		where market_id = #{marketId}
+			and menu_id = #{menuId}
+	</update>
+	
+	<!-- 메뉴 이력 업데이트 -->
+	
+	
+	
+	
+	
+	
+	<!-- 메뉴 정보 삭제 -->
+	<delete id="menuDelete" parameterType="map">
+		delete from tbl_menu
+		where menu_id = #{menuId}
+			and market_id = #{marketId}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- test용, 끝나면 삭제하기 -->
+	<select id="test" resultType="hashmap">
+		select * from test_table
+		<!--  
+		where market_id = "2"
+		-->
+	</select>
 	
 </mapper>

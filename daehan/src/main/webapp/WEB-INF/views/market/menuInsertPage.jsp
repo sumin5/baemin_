@@ -24,6 +24,7 @@
 		<label for="menuName">메뉴 이름</label>
 		<input class="form-control" type="text" id="menuName" name="menuName" />
 		<input type="hidden" id="menuId" name="menuId" value="${menuId}" />
+
 	</div>
 	
 	<div class="form-group">
