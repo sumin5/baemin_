@@ -1,5 +1,14 @@
 package baemin.member.controller;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,13 +34,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
-
+import baemin.market.controller.MarketController;
 import baemin.member.dao.MemberDAO;
 import baemin.member.dao.MemberDAOImpl;
 import baemin.member.domain.AdMethodDTO;
@@ -451,6 +463,87 @@ public class MemberController {
 			System.out.println("================= orderPage GET 진입 =================");
 			
 		}
+	
+		@RequestMapping(value="/jq.cls", method=RequestMethod.GET)
+		public ModelAndView main(ModelAndView mv , HttpSession s, RedirectView rv) {
+			mv.setViewName("member/test");
+			return mv;
+		}
+		
+		@RequestMapping(value="/pay.cls", method=RequestMethod.GET)
+		public ModelAndView serve(ModelAndView mv , HttpSession s, RedirectView rv) {
+			mv.setViewName("member/serve");
+			return mv;
+		}
+		@ResponseBody
+		@RequestMapping(value="/kakaopay.cls", method=RequestMethod.GET)
+		public String kakaopay(ModelAndView mv , HttpSession s, RedirectView rv) {
+			try {
+				URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
+				
+				// 전깃줄 같은 역할 서버 연결용
+				HttpURLConnection serverConn = (HttpURLConnection) address.openConnection();
+				
+				serverConn.setRequestMethod("POST"); // 카카오에서 post로 요청하기 떄문에 맞춰줘야함
+				serverConn.setRequestProperty("Authorization", "KakaoAK 75fd3a09eb96d41e1a5f517fbf0c37ac"); // 카카오 프로퍼티 설정 본인 api키
+				serverConn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8"); // 동일
+				serverConn.setDoOutput(true); // 커넥션에는 do아웃풋과 do인풋이 있는데	 두개를 통해서 서버에 전해줄것이 있는지 없는지 판단 // 넣어줄것이 있기에 true로 설정
+				// input은 안해주는게 디폴트가 true기 때문에 따로 생성안해줌  output은 default가 false여서 위에서 생성해서 true로 설정
+				
+				String paraMeter = "cid=TC0ONETIME";
+						paraMeter+= "&partner_order_id=partner_order_id";
+						paraMeter+= "&partner_user_id=partner_user_id";
+						paraMeter+= "&item_name=초코파이";
+						paraMeter+= "&quantity=1";
+						paraMeter+= "&total_amount=2200";
+						paraMeter+= "&vat_amount=200";
+						paraMeter+= "&tax_free_amount=0";
+						paraMeter+= "&approval_url=http://localhost:8181/member/pay.cls"; // 카카오내 플랫폼 url 확인후 작성
+						paraMeter+= "&fail_url=https://localhost:8181/member/fail"; // 동일
+						paraMeter+= "&cancel_url=https://localhost:8181/member/cancel"; // 동일
+						
+						// 서버에 파라메터전달해줄 클래스
+						OutputStream postC = serverConn.getOutputStream(); // 전깃줄같은 서버연결용에서  아웃스트림을 받아냄 
+						DataOutputStream postD = new DataOutputStream(postC); // 데이터를 주는역할
+						
+						// 아웃풋스트림은 byte 형식으로 전달해야함
+						postD.writeBytes(paraMeter); // byte로 형변환 
+						
+						// flush() 함수는 본인이 가진것을 비운다는데, 자바에서는 전기줄에서 태워보내면서 비운다
+						postD.close(); // close는 flush를 호출하면서 닫아버림
+						
+						int result = serverConn.getResponseCode(); // 연결이 잘되었는지 int형으로 받음
+						
+						InputStream getD;  // 데이터를 받는역할
+						if(result == 200) {// 상식 http코드에서 정상적인 코드는 200을 의미  // 그이외의값은 다 에러  
+							getD = serverConn.getInputStream(); // 데이터를 받음
+						}
+						else {
+							getD = serverConn.getErrorStream(); // 데이터를 에러발생시키면 에러 스트림으로 받아야함
+						}
+						
+						InputStreamReader inputReader = new InputStreamReader(getD);// 받은 데이터를 읽는애
+						
+						// 데이터 송수신이 byte인데 그대로 받으면 안되기에 byte를 형변환해서 받아야함
+						BufferedReader changeD = new BufferedReader(inputReader);// 버퍼리더는 데이터를 읽으면서 형변환을 해줌 
+						
+						return changeD.readLine(); // 문자열로 형변환을 알아서 하고 값을 찍어내고 본인은 비움
+						
+						
+ 			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return "{\"result\":\"NO\"}";	
+		}
+		
+		
+	
+		
 		
 
 }
