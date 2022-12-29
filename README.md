@@ -2,7 +2,7 @@
 음식을 주문하고, 별점과 리뷰 등 후기를 남길 수 있는 웹사이트입니다.
 
 ## Tool
-**IDE** : Eclipse <br/>
+**IDE** : STS <br/>
 **language** : Spring 3.9.14,  Java 15.0.2, JavaScript  <br/>
 **Server** : Tomcat 9.0.52 <br/>
 **DB** : mariaDB
